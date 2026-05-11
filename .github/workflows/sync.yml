@@ -1,0 +1,42 @@
+name: Sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Proteus manifest
+        id: version
+        run: |
+          curl -sL https://github.com/solona-m/proteus/releases/latest/download/latest.zip -o proteus.zip
+          unzip -p proteus.zip Proteus.json > manifest.json 2>/dev/null \
+            || unzip -p proteus.zip Plugin.json > manifest.json
+          VERSION=$(jq -r '.AssemblyVersion' manifest.json)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Update repo.json
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          TIMESTAMP=$(date +%s)
+          jq \
+            --arg v "$VERSION" \
+            --argjson t "$TIMESTAMP" \
+            '(.[] | select(.InternalName == "Proteus") | .AssemblyVersion) |= $v |
+             (.[] | select(.InternalName == "Proteus") | .LastUpdate) |= $t' \
+            repo.json > repo.json.tmp && mv repo.json.tmp repo.json
+
+      - name: Commit
+        run: |
+          git config user.name "Solona"
+          git config user.email "corey.roussel@outlook.com"
+          git add repo.json
+          git diff --staged --quiet || (git commit -m "Proteus ${{ steps.version.outputs.version }}" && git push)
