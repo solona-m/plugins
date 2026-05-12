@@ -1,33 +1,35 @@
-{
-  "Author": "Solona",
-  "Name": "Proteus",
-  "InternalName": "Proteus",
-  "AssemblyVersion": "2605.19.0.0",
-  "Description": "Headless overlay compositor for Penumbra. Discovers mods with a Proteus/ sidecar, composites their overlay textures in Penumbra priority order, and maintains a single managed mod at priority 999. No authoring UI — all work happens in external tools. Type /proteus to open the status window.",
-  "ApplicableVersion": "any",
-  "Tags": [
-    "texture",
-    "overlay",
-    "compositor",
-    "penumbra",
-    "skin",
-    "mod"
-  ],
-  "CategoryTags": [
-    "utility"
-  ],
-  "DalamudApiLevel": 15,
-  "IsHide": false,
-  "IsTestingExclusive": false,
-  "DownloadLinkInstall": "https://github.com/solona-m/proteus/releases/latest/download/latest.zip",
-  "DownloadLinkTesting": "https://github.com/solona-m/proteus/releases/latest/download/latest.zip",
-  "DownloadLinkUpdate": "https://github.com/solona-m/proteus/releases/latest/download/latest.zip",
-  "DownloadCount": 0,
-  "LastUpdate": 1778558513,
-  "Punchline": "Automatic overlay compositor for Penumbra mods",
-  "AcceptsFeedback": true,
-  "LoadRequiredState": 0,
-  "LoadSync": false,
-  "CanUnloadAsync": false,
-  "LoadPriority": 0
-}
+[
+  {
+    "Author": "Solona",
+    "Name": "Proteus",
+    "InternalName": "Proteus",
+    "AssemblyVersion": "2605.20.0.0",
+    "Description": "Headless overlay compositor for Penumbra. Discovers mods with a Proteus/ sidecar, composites their overlay textures in Penumbra priority order, and maintains a single managed mod at priority 999. No authoring UI — all work happens in external tools. Type /proteus to open the status window.",
+    "ApplicableVersion": "any",
+    "Tags": [
+      "texture",
+      "overlay",
+      "compositor",
+      "penumbra",
+      "skin",
+      "mod"
+    ],
+    "CategoryTags": [
+      "utility"
+    ],
+    "DalamudApiLevel": 15,
+    "IsHide": false,
+    "IsTestingExclusive": false,
+    "DownloadLinkInstall": "https://github.com/solona-m/proteus/releases/latest/download/latest.zip",
+    "DownloadLinkTesting": "https://github.com/solona-m/proteus/releases/latest/download/latest.zip",
+    "DownloadLinkUpdate": "https://github.com/solona-m/proteus/releases/latest/download/latest.zip",
+    "DownloadCount": 0,
+    "LastUpdate": 1778558782,
+    "Punchline": "Automatic overlay compositor for Penumbra mods",
+    "AcceptsFeedback": true,
+    "LoadRequiredState": 0,
+    "LoadSync": false,
+    "CanUnloadAsync": false,
+    "LoadPriority": 0
+  }
+]
