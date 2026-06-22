@@ -3,7 +3,7 @@
     "Author": "Solona",
     "Name": "Proteus",
     "InternalName": "Proteus",
-    "AssemblyVersion": "2606.115.0.0",
+    "AssemblyVersion": "2606.116.0.0",
     "Description": "Headless overlay compositor for Penumbra. Discovers mods with a Proteus/ sidecar, composites their overlay textures in Penumbra priority order, and maintains a single managed mod at priority 999. No authoring UI — all work happens in external tools. Type /proteus to open the status window.",
     "ApplicableVersion": "any",
     "Tags": [
@@ -24,38 +24,8 @@
     "DownloadLinkTesting": "https://github.com/solona-m/proteus/releases/latest/download/latest.zip",
     "DownloadLinkUpdate": "https://github.com/solona-m/proteus/releases/latest/download/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1782133239,
+    "LastUpdate": 1782135953,
     "Punchline": "Automatic overlay compositor for Penumbra mods",
-    "AcceptsFeedback": true,
-    "LoadRequiredState": 0,
-    "LoadSync": false,
-    "CanUnloadAsync": false,
-    "LoadPriority": 0
-  },
-  {
-    "Author": "Solona",
-    "Name": "PlayerSync (Soli's Version)",
-    "InternalName": "MareSempiterne",
-    "AssemblyVersion": "1.15.2.4",
-    "Description": "This plugin will synchronize your Penumbra mods and current Glamourer state with other paired clients automatically.",
-    "ApplicableVersion": "any",
-    "RepoUrl": "https://github.com/solona-m/MareSynchronosClient",
-    "Tags": [
-      "customization"
-    ],
-    "CategoryTags": [
-      "utility"
-    ],
-    "DalamudApiLevel": 15,
-    "IsHide": false,
-    "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://github.com/solona-m/MareSynchronosClient/releases/latest/download/latest.zip",
-    "DownloadLinkTesting": "https://github.com/solona-m/MareSynchronosClient/releases/latest/download/latest.zip",
-    "DownloadLinkUpdate": "https://github.com/solona-m/MareSynchronosClient/releases/latest/download/latest.zip",
-    "DownloadCount": 0,
-    "LastUpdate": 1782133239,
-    "Punchline": "Let others see you as you see yourself.",
-    "IconUrl": "https://maresempiterne.io/download/plugin/icon.png",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
     "LoadSync": false,
