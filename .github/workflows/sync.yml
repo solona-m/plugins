@@ -15,23 +15,31 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Fetch Proteus manifest
-        id: version
+        id: proteus
         run: |
           curl -sL https://github.com/solona-m/proteus/releases/latest/download/latest.zip -o proteus.zip
-          unzip -p proteus.zip Proteus.json > manifest.json 2>/dev/null \
-            || unzip -p proteus.zip Plugin.json > manifest.json
-          VERSION=$(jq -r '.AssemblyVersion' manifest.json)
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          unzip -p proteus.zip Proteus.json > proteus.json 2>/dev/null \
+            || unzip -p proteus.zip Plugin.json > proteus.json
+          echo "version=$(jq -r '.AssemblyVersion' proteus.json)" >> $GITHUB_OUTPUT
+
+      - name: Fetch PlayerSync manifest
+        id: playersync
+        run: |
+          curl -sL https://github.com/solona-m/MareSynchronosClient/releases/latest/download/latest.zip -o playersync.zip
+          unzip -p playersync.zip MareSempiterne.json > playersync.json
+          echo "version=$(jq -r '.AssemblyVersion' playersync.json)" >> $GITHUB_OUTPUT
 
       - name: Update repo.json
         run: |
-          VERSION="${{ steps.version.outputs.version }}"
           TIMESTAMP=$(date +%s)
           jq \
-            --arg v "$VERSION" \
+            --arg pv "${{ steps.proteus.outputs.version }}" \
+            --arg mv "${{ steps.playersync.outputs.version }}" \
             --argjson t "$TIMESTAMP" \
-            '(.[] | select(.InternalName == "Proteus") | .AssemblyVersion) |= $v |
-             (.[] | select(.InternalName == "Proteus") | .LastUpdate) |= $t' \
+            '(.[] | select(.InternalName == "Proteus") | .AssemblyVersion) |= $pv |
+             (.[] | select(.InternalName == "Proteus") | .LastUpdate) |= $t |
+             (.[] | select(.InternalName == "MareSempiterne") | .AssemblyVersion) |= $mv |
+             (.[] | select(.InternalName == "MareSempiterne") | .LastUpdate) |= $t' \
             repo.json > repo.json.tmp && mv repo.json.tmp repo.json
 
       - name: Commit
@@ -39,4 +47,4 @@ jobs:
           git config user.name "Solona"
           git config user.email "solonamods@gmail.com"
           git add repo.json
-          git diff --staged --quiet || (git commit -m "Proteus ${{ steps.version.outputs.version }}" && git push)
+          git diff --staged --quiet || (git commit -m "Sync: Proteus ${{ steps.proteus.outputs.version }}, PlayerSync ${{ steps.playersync.outputs.version }}" && git push)
