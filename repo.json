@@ -18,6 +18,7 @@
       "utility"
     ],
     "DalamudApiLevel": 15,
+    "TestingDalamudApiLevel": 15,
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://github.com/solona-m/proteus/releases/latest/download/latest.zip",

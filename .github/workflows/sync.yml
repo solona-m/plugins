@@ -16,22 +16,50 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch Proteus manifest
-        id: proteus
+      # Stable = newest non-prerelease, testing = newest prerelease. Both are
+      # resolved from the API rather than the dispatch payload, so scheduled and
+      # manual runs reconcile repo.json on their own.
+      - name: Resolve releases
+        id: releases
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          curl -sL https://github.com/solona-m/proteus/releases/latest/download/latest.zip -o proteus.zip
-          unzip -p proteus.zip Proteus.json > proteus.json 2>/dev/null \
-            || unzip -p proteus.zip Plugin.json > proteus.json
-          echo "version=$(jq -r '.AssemblyVersion' proteus.json)" >> $GITHUB_OUTPUT
+          set -euo pipefail
+          releases=$(gh api 'repos/solona-m/proteus/releases?per_page=50')
+
+          stable_tag=$(jq -r '[.[] | select(.prerelease == false and .draft == false)][0].tag_name // empty' <<<"$releases")
+          testing_tag=$(jq -r '[.[] | select(.prerelease == true  and .draft == false)][0].tag_name // empty' <<<"$releases")
+
+          version_of() {
+            curl -sfL "https://github.com/solona-m/proteus/releases/download/$1/latest.zip" -o "release.zip"
+            unzip -p release.zip Proteus.json | jq -r '.AssemblyVersion'
+          }
+
+          if [ -n "$stable_tag" ]; then
+            echo "stable_version=$(version_of "$stable_tag")" >> "$GITHUB_OUTPUT"
+          fi
+          if [ -n "$testing_tag" ]; then
+            echo "testing_version=$(version_of "$testing_tag")" >> "$GITHUB_OUTPUT"
+            echo "testing_url=https://github.com/solona-m/proteus/releases/download/$testing_tag/latest.zip" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Update repo.json
+        env:
+          STABLE_VERSION: ${{ steps.releases.outputs.stable_version }}
+          TESTING_VERSION: ${{ steps.releases.outputs.testing_version }}
+          TESTING_URL: ${{ steps.releases.outputs.testing_url }}
         run: |
-          TIMESTAMP=$(date +%s)
+          set -euo pipefail
           jq \
-            --arg pv "${{ steps.proteus.outputs.version }}" \
-            --argjson t "$TIMESTAMP" \
-            '(.[] | select(.InternalName == "Proteus") | .AssemblyVersion) |= $pv |
-             (.[] | select(.InternalName == "Proteus") | .LastUpdate) |= $t' \
+            --arg sv "$STABLE_VERSION" \
+            --arg tv "$TESTING_VERSION" \
+            --arg tu "$TESTING_URL" \
+            --argjson t "$(date +%s)" \
+            'map(if .InternalName == "Proteus" then
+                   (if $sv != "" then .AssemblyVersion = $sv | .LastUpdate = $t else . end)
+                   | (if $tv != "" then .TestingAssemblyVersion = $tv | .DownloadLinkTesting = $tu
+                      else del(.TestingAssemblyVersion) end)
+                 else . end)' \
             repo.json > repo.json.tmp && mv repo.json.tmp repo.json
 
       - name: Commit
@@ -39,4 +67,4 @@ jobs:
           git config user.name "Solona"
           git config user.email "solonamods@gmail.com"
           git add repo.json
-          git diff --staged --quiet || (git commit -m "Sync: Proteus ${{ steps.proteus.outputs.version }}" && git push)
+          git diff --staged --quiet || (git commit -m "Sync: Proteus ${{ steps.releases.outputs.stable_version }} (testing: ${{ steps.releases.outputs.testing_version }})" && git push)
