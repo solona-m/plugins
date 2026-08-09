@@ -22,16 +22,16 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://github.com/solona-m/proteus/releases/latest/download/latest.zip",
-    "DownloadLinkTesting": "https://github.com/solona-m/proteus/releases/download/testing-236/latest.zip",
+    "DownloadLinkTesting": "https://github.com/solona-m/proteus/releases/download/testing-245/latest.zip",
     "DownloadLinkUpdate": "https://github.com/solona-m/proteus/releases/latest/download/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1786252207,
+    "LastUpdate": 1786299832,
     "Punchline": "Automatic overlay compositor for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
     "LoadSync": false,
     "CanUnloadAsync": false,
     "LoadPriority": 0,
-    "TestingAssemblyVersion": "2608.236.0.0"
+    "TestingAssemblyVersion": "2608.245.0.0"
   }
 ]
