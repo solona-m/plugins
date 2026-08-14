@@ -32,6 +32,8 @@
     "LoadSync": false,
     "CanUnloadAsync": false,
     "LoadPriority": 0,
+    "RepoUrl": "https://github.com/solona-m/proteus",
+    "IconUrl": "https://raw.githubusercontent.com/solona-m/proteus/main/Proteus/images/icon.png",
     "TestingAssemblyVersion": "2608.240.0.0"
   }
 ]

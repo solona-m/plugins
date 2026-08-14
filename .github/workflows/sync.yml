@@ -30,16 +30,23 @@ jobs:
           stable_tag=$(jq -r '[.[] | select(.prerelease == false and .draft == false)][0].tag_name // empty' <<<"$releases")
           testing_tag=$(jq -r '[.[] | select(.prerelease == true  and .draft == false)][0].tag_name // empty' <<<"$releases")
 
-          version_of() {
-            curl -sfL "https://github.com/solona-m/proteus/releases/download/$1/latest.zip" -o "release.zip"
-            unzip -p release.zip Proteus.json | jq -r '.AssemblyVersion'
+          # Keep the whole manifest, not just its version. Everything descriptive — IconUrl,
+          # Changelog, Description, Punchline, Tags — is merged into repo.json by the next step, so
+          # the listing tracks what the plugin actually shipped. Reading only AssemblyVersion is why
+          # this file had no icon at all and a Description two rewrites out of date.
+          # Distinct zip names: the two calls would otherwise race on one release.zip.
+          manifest_of() {
+            curl -sfL "https://github.com/solona-m/proteus/releases/download/$1/latest.zip" -o "$2.zip"
+            unzip -p "$2.zip" Proteus.json > "$2.json"
           }
 
           if [ -n "$stable_tag" ]; then
-            echo "stable_version=$(version_of "$stable_tag")" >> "$GITHUB_OUTPUT"
+            manifest_of "$stable_tag" stable
+            echo "stable_version=$(jq -r '.AssemblyVersion' stable.json)" >> "$GITHUB_OUTPUT"
           fi
           if [ -n "$testing_tag" ]; then
-            echo "testing_version=$(version_of "$testing_tag")" >> "$GITHUB_OUTPUT"
+            manifest_of "$testing_tag" testing
+            echo "testing_version=$(jq -r '.AssemblyVersion' testing.json)" >> "$GITHUB_OUTPUT"
             echo "testing_url=https://github.com/solona-m/proteus/releases/download/$testing_tag/latest.zip" >> "$GITHUB_OUTPUT"
           fi
 
@@ -50,13 +57,29 @@ jobs:
           TESTING_URL: ${{ steps.releases.outputs.testing_url }}
         run: |
           set -euo pipefail
+
+          # InternalName is dropped from the merge because it is the key this step matches on —
+          # letting the manifest rewrite it would orphan the entry on every later run.
+          if [ -f stable.json ]; then
+            manifest=$(jq -c 'del(.InternalName)' stable.json)
+          else
+            manifest='{}'
+          fi
+
+          # `. + $m` lets the manifest win on every key it defines, while repo.json keeps the ones it
+          # has no concept of: DownloadLink*, IsHide, IsTestingExclusive, DownloadCount,
+          # TestingDalamudApiLevel. Empty manifest values are merged as-is rather than filtered out,
+          # so a release with no changelog CLEARS the previous one instead of leaving stale text
+          # under a new version number.
           jq \
             --arg sv "$STABLE_VERSION" \
             --arg tv "$TESTING_VERSION" \
             --arg tu "$TESTING_URL" \
             --argjson t "$(date +%s)" \
+            --argjson m "$manifest" \
             'map(if .InternalName == "Proteus" then
-                   (if $sv != "" then .AssemblyVersion = $sv | .LastUpdate = $t else . end)
+                   (. + $m)
+                   | (if $sv != "" then .AssemblyVersion = $sv | .LastUpdate = $t else . end)
                    | (if $tv != "" then .TestingAssemblyVersion = $tv | .DownloadLinkTesting = $tu
                       else del(.TestingAssemblyVersion) end)
                  else . end)' \
