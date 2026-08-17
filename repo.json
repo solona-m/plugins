@@ -3,7 +3,7 @@
     "Author": "Solona",
     "Name": "Proteus",
     "InternalName": "Proteus",
-    "AssemblyVersion": "2608.277.0.0",
+    "AssemblyVersion": "2608.278.0.0",
     "Description": "Overlay compositor for Penumbra. Discovers mods with a Proteus/ sidecar, composites their overlay textures in Penumbra priority order, and maintains a single managed mod at priority 999. Type /proteus to open the status window, or /proteus config for settings.",
     "ApplicableVersion": "any",
     "Tags": [
@@ -25,7 +25,7 @@
     "DownloadLinkTesting": "https://github.com/solona-m/proteus/releases/download/testing-240/latest.zip",
     "DownloadLinkUpdate": "https://github.com/solona-m/proteus/releases/latest/download/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1786942133,
+    "LastUpdate": 1786991801,
     "Punchline": "Automatic overlay compositor for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -34,6 +34,7 @@
     "LoadPriority": 0,
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://raw.githubusercontent.com/solona-m/proteus/main/Proteus/images/icon.png",
-    "Changelog": "Added onion file support and pretty UI. Many race fixes"
+    "Changelog": "Localization",
+    "TestingAssemblyVersion": "2608.240.0.0"
   }
 ]
