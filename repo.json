@@ -3,7 +3,7 @@
     "Author": "Solona",
     "Name": "Proteus",
     "InternalName": "Proteus",
-    "AssemblyVersion": "2608.309.0.0",
+    "AssemblyVersion": "2608.313.0.0",
     "Description": "Overlay compositor for Penumbra. Discovers mods with a Proteus/ sidecar, composites their overlay textures in Penumbra priority order, and maintains a single managed mod at priority 999. Type /proteus to open the status window, or /proteus config for settings.",
     "ApplicableVersion": "any",
     "Tags": [
@@ -21,11 +21,11 @@
     "TestingDalamudApiLevel": 15,
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://dl.solona.info/v2608.309.0.0/latest.zip",
+    "DownloadLinkInstall": "https://dl.solona.info/v2608.313.0.0/latest.zip",
     "DownloadLinkTesting": "https://dl.solona.info/testing-309/latest.zip",
-    "DownloadLinkUpdate": "https://dl.solona.info/v2608.309.0.0/latest.zip",
+    "DownloadLinkUpdate": "https://dl.solona.info/v2608.313.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1788012330,
+    "LastUpdate": 1788013684,
     "Punchline": "Automatic overlay compositor for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -34,7 +34,7 @@
     "LoadPriority": 0,
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
-    "Changelog": "Install mods without using a gear slot. Add toggles to any mod.",
+    "Changelog": "Add toggles to any mod. Equip mods as accessories without using a gear slot.",
     "TestingAssemblyVersion": "2608.309.0.0"
   }
 ]
