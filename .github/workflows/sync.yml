@@ -25,10 +25,26 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          releases=$(gh api 'repos/solona-m/proteus/releases?per_page=50')
+          releases=$(gh api 'repos/solona-m/proteus/releases?per_page=100')
 
-          stable_tag=$(jq -r '[.[] | select(.prerelease == false and .draft == false)][0].tag_name // empty' <<<"$releases")
-          testing_tag=$(jq -r '[.[] | select(.prerelease == true  and .draft == false)][0].tag_name // empty' <<<"$releases")
+          # Two guards, both load-bearing now that the download links are derived from these tags.
+          #
+          # The tag_name pattern skips asset-only releases — effects-v1 and uvmaps-v1 ship starter
+          # effects and UV maps, not a plugin build, so they have no latest.zip. effects-v1 is
+          # currently the release GitHub flags as "Latest", which is exactly what made
+          # /releases/latest/download/latest.zip start 404ing.
+          #
+          # max_by(.published_at) rather than [0], because the API's list order is neither
+          # created_at nor published_at: v2608.251.0.0 comes back after v2608.278.0.0 despite the
+          # later timestamp on both fields. Taking the first element happened to be right, not
+          # reliably right. An empty candidate list yields null, so // empty still gives "".
+          newest_tag() {
+            jq -r --argjson pre "$1" --arg pat "$2" \
+              '[.[] | select(.prerelease == $pre and .draft == false and (.tag_name | test($pat)))]
+               | max_by(.published_at).tag_name // empty' <<<"$releases"
+          }
+          stable_tag=$(newest_tag false '^v[0-9]')
+          testing_tag=$(newest_tag true  '^testing-[0-9]')
 
           # Keep the whole manifest, not just its version. Everything descriptive — IconUrl,
           # Changelog, Description, Punchline, Tags — is merged into repo.json by the next step, so
@@ -68,9 +84,10 @@ jobs:
 
           # InternalName is dropped from the merge because it is the key this step matches on —
           # letting the manifest rewrite it would orphan the entry on every later run. IconUrl is
-          # dropped because the manifest's copy points at raw.githubusercontent.com and this file
-          # serves it from the mirror instead; without the del() the merge below would silently
-          # revert the icon to GitHub on every sync, and nothing would look broken.
+          # dropped as defence in depth: the manifest's copy points at raw.githubusercontent.com,
+          # and while the jq below already assigns IconUrl unconditionally *after* the merge — so
+          # that assignment, not this del(), is what actually pins the icon to the mirror — keeping
+          # it out of $m means the mirror URL survives if that line is ever moved or dropped.
           if [ -f stable.json ]; then
             manifest=$(jq -c 'del(.InternalName, .IconUrl)' stable.json)
           else
