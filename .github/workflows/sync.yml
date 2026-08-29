@@ -40,46 +40,61 @@ jobs:
             unzip -p "$2.zip" Proteus.json > "$2.json"
           }
 
+          # The download links users see go through the Cloudflare mirror, not GitHub: Dalamud
+          # fetches them per install/update and GitHub throttles anonymous requests by count. The
+          # tag is pinned rather than using /releases/latest/download/ — that redirect costs an
+          # extra request, cannot be cached immutably, and resolves to whichever release GitHub
+          # currently flags as Latest, which is not necessarily a plugin build. manifest_of keeps
+          # hitting github.com: it runs once per release inside CI, not on users' machines.
           if [ -n "$stable_tag" ]; then
             manifest_of "$stable_tag" stable
             echo "stable_version=$(jq -r '.AssemblyVersion' stable.json)" >> "$GITHUB_OUTPUT"
+            echo "stable_url=https://dl.solona.info/$stable_tag/latest.zip" >> "$GITHUB_OUTPUT"
           fi
           if [ -n "$testing_tag" ]; then
             manifest_of "$testing_tag" testing
             echo "testing_version=$(jq -r '.AssemblyVersion' testing.json)" >> "$GITHUB_OUTPUT"
-            echo "testing_url=https://github.com/solona-m/proteus/releases/download/$testing_tag/latest.zip" >> "$GITHUB_OUTPUT"
+            echo "testing_url=https://dl.solona.info/$testing_tag/latest.zip" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Update repo.json
         env:
           STABLE_VERSION: ${{ steps.releases.outputs.stable_version }}
+          STABLE_URL: ${{ steps.releases.outputs.stable_url }}
           TESTING_VERSION: ${{ steps.releases.outputs.testing_version }}
           TESTING_URL: ${{ steps.releases.outputs.testing_url }}
         run: |
           set -euo pipefail
 
           # InternalName is dropped from the merge because it is the key this step matches on —
-          # letting the manifest rewrite it would orphan the entry on every later run.
+          # letting the manifest rewrite it would orphan the entry on every later run. IconUrl is
+          # dropped because the manifest's copy points at raw.githubusercontent.com and this file
+          # serves it from the mirror instead; without the del() the merge below would silently
+          # revert the icon to GitHub on every sync, and nothing would look broken.
           if [ -f stable.json ]; then
-            manifest=$(jq -c 'del(.InternalName)' stable.json)
+            manifest=$(jq -c 'del(.InternalName, .IconUrl)' stable.json)
           else
             manifest='{}'
           fi
 
           # `. + $m` lets the manifest win on every key it defines, while repo.json keeps the ones it
-          # has no concept of: DownloadLink*, IsHide, IsTestingExclusive, DownloadCount,
-          # TestingDalamudApiLevel. Empty manifest values are merged as-is rather than filtered out,
-          # so a release with no changelog CLEARS the previous one instead of leaving stale text
-          # under a new version number.
+          # has no concept of: IsHide, IsTestingExclusive, DownloadCount, TestingDalamudApiLevel.
+          # IconUrl and all three DownloadLink* are owned here, written after the merge. Empty
+          # manifest values are merged as-is rather than filtered out, so a release with no changelog
+          # CLEARS the previous one instead of leaving stale text under a new version number.
           jq \
             --arg sv "$STABLE_VERSION" \
+            --arg su "$STABLE_URL" \
             --arg tv "$TESTING_VERSION" \
             --arg tu "$TESTING_URL" \
             --argjson t "$(date +%s)" \
             --argjson m "$manifest" \
             'map(if .InternalName == "Proteus" then
                    (. + $m)
+                   | .IconUrl = "https://dl.solona.info/icon.png"
                    | (if $sv != "" then .AssemblyVersion = $sv | .LastUpdate = $t else . end)
+                   | (if $su != "" then .DownloadLinkInstall = $su | .DownloadLinkUpdate = $su
+                      else . end)
                    | (if $tv != "" then .TestingAssemblyVersion = $tv | .DownloadLinkTesting = $tu
                       else del(.TestingAssemblyVersion) end)
                  else . end)' \

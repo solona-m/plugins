@@ -21,9 +21,9 @@
     "TestingDalamudApiLevel": 15,
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://github.com/solona-m/proteus/releases/latest/download/latest.zip",
-    "DownloadLinkTesting": "https://github.com/solona-m/proteus/releases/download/testing-309/latest.zip",
-    "DownloadLinkUpdate": "https://github.com/solona-m/proteus/releases/latest/download/latest.zip",
+    "DownloadLinkInstall": "https://dl.solona.info/v2608.309.0.0/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-309/latest.zip",
+    "DownloadLinkUpdate": "https://dl.solona.info/v2608.309.0.0/latest.zip",
     "DownloadCount": 0,
     "LastUpdate": 1788001001,
     "Punchline": "Automatic overlay compositor for Penumbra mods",
@@ -33,7 +33,7 @@
     "CanUnloadAsync": false,
     "LoadPriority": 0,
     "RepoUrl": "https://github.com/solona-m/proteus",
-    "IconUrl": "https://raw.githubusercontent.com/solona-m/proteus/main/Proteus/images/icon.png",
+    "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Install mods without using a gear slot. Add toggles to any mod.",
     "TestingAssemblyVersion": "2608.309.0.0"
   }
