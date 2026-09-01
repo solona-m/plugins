@@ -26,10 +26,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2608.330.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-342/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-344/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2608.330.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1788228517,
+    "LastUpdate": 1788233846,
     "Punchline": "Overlay compositor and second-skin renderer for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -39,6 +39,6 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Add toggles to any mod. Equip mods as accessories without using a gear slot. Atramentum Luminis import (tattoos and eyes).",
-    "TestingAssemblyVersion": "2609.342.0.0"
+    "TestingAssemblyVersion": "2609.344.0.0"
   }
 ]
