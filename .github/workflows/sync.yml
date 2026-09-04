@@ -116,6 +116,13 @@ jobs:
             # after the merge. Empty manifest values are merged as-is rather than filtered out, so a
             # release with no changelog CLEARS the previous one instead of leaving stale text under a
             # new version number.
+            #
+            # A plugin with no stable release yet points Install and Update at its newest TESTING
+            # build rather than keeping whatever was hand-seeded. Dalamud does not follow those links
+            # while the entry is testing-exclusive, so this is not what users fetch — but a listing
+            # whose install link names a superseded build is wrong the moment anyone flips that flag,
+            # and it drifts further from the truth with every testing release until the first stable
+            # one lands.
             jq \
               --arg n  "$name" \
               --arg sv "$stable_version" \
@@ -130,6 +137,7 @@ jobs:
                      | (if $ic != "" then .IconUrl = $ic else . end)
                      | (if $sv != "" then .AssemblyVersion = $sv | .LastUpdate = $t else . end)
                      | (if $su != "" then .DownloadLinkInstall = $su | .DownloadLinkUpdate = $su
+                        elif $tu != "" then .DownloadLinkInstall = $tu | .DownloadLinkUpdate = $tu
                         else . end)
                      | (if $tv != "" then .TestingAssemblyVersion = $tv | .DownloadLinkTesting = $tu
                         else del(.TestingAssemblyVersion) end)
