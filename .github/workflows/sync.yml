@@ -16,22 +16,33 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Stable = newest non-prerelease, testing = newest prerelease. Both are
-      # resolved from the API rather than the dispatch payload, so scheduled and
-      # manual runs reconcile repo.json on their own.
-      - name: Resolve releases
-        id: releases
+      # Every plugin listed here is reconciled on every run. Releases are resolved from the API
+      # rather than from the dispatch payload, so scheduled and manual runs fix up repo.json on
+      # their own and a missed dispatch delays a listing rather than losing it.
+      #
+      # Fields, in order:
+      #   name     InternalName in repo.json — the key each entry is matched on
+      #   repo     owner/name on GitHub
+      #   manifest the manifest's filename INSIDE latest.zip
+      #   prefix   path prefix on the mirror, '' for Proteus (its URLs are hardcoded in shipped
+      #            builds and cannot gain one), 'camera-tools/' for anything added since
+      #   icon     mirror URL of the icon, or empty for a plugin that ships none
+      - name: Sync repo.json
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          releases=$(gh api 'repos/solona-m/proteus/releases?per_page=100')
+
+          PLUGINS=(
+            "Proteus|solona-m/proteus|Proteus.json||https://dl.solona.info/icon.png"
+            "CameraToolsXIV|solona-m/camera-tools-ffxiv|CameraToolsXIV.json|camera-tools/|"
+          )
 
           # Two guards, both load-bearing now that the download links are derived from these tags.
           #
-          # The tag_name pattern skips asset-only releases — effects-v1 and uvmaps-v1 ship starter
-          # effects and UV maps, not a plugin build, so they have no latest.zip. effects-v1 is
-          # currently the release GitHub flags as "Latest", which is exactly what made
+          # The tag_name pattern skips asset-only releases — Proteus's effects-v1 and uvmaps-v1 ship
+          # starter effects and UV maps, not a plugin build, so they have no latest.zip. effects-v1
+          # is the release GitHub flags as "Latest", which is exactly what made
           # /releases/latest/download/latest.zip start 404ing.
           #
           # max_by(.published_at) rather than [0], because the API's list order is neither
@@ -41,85 +52,99 @@ jobs:
           newest_tag() {
             jq -r --argjson pre "$1" --arg pat "$2" \
               '[.[] | select(.prerelease == $pre and .draft == false and (.tag_name | test($pat)))]
-               | max_by(.published_at).tag_name // empty' <<<"$releases"
-          }
-          stable_tag=$(newest_tag false '^v[0-9]')
-          testing_tag=$(newest_tag true  '^testing-[0-9]')
-
-          # Keep the whole manifest, not just its version. Everything descriptive — IconUrl,
-          # Changelog, Description, Punchline, Tags — is merged into repo.json by the next step, so
-          # the listing tracks what the plugin actually shipped. Reading only AssemblyVersion is why
-          # this file had no icon at all and a Description two rewrites out of date.
-          # Distinct zip names: the two calls would otherwise race on one release.zip.
-          manifest_of() {
-            curl -sfL "https://github.com/solona-m/proteus/releases/download/$1/latest.zip" -o "$2.zip"
-            unzip -p "$2.zip" Proteus.json > "$2.json"
+               | max_by(.published_at).tag_name // empty' <<<"$3"
           }
 
-          # The download links users see go through the Cloudflare mirror, not GitHub: Dalamud
-          # fetches them per install/update and GitHub throttles anonymous requests by count. The
-          # tag is pinned rather than using /releases/latest/download/ — that redirect costs an
-          # extra request, cannot be cached immutably, and resolves to whichever release GitHub
-          # currently flags as Latest, which is not necessarily a plugin build. manifest_of keeps
-          # hitting github.com: it runs once per release inside CI, not on users' machines.
-          if [ -n "$stable_tag" ]; then
-            manifest_of "$stable_tag" stable
-            echo "stable_version=$(jq -r '.AssemblyVersion' stable.json)" >> "$GITHUB_OUTPUT"
-            echo "stable_url=https://dl.solona.info/$stable_tag/latest.zip" >> "$GITHUB_OUTPUT"
-          fi
-          if [ -n "$testing_tag" ]; then
-            manifest_of "$testing_tag" testing
-            echo "testing_version=$(jq -r '.AssemblyVersion' testing.json)" >> "$GITHUB_OUTPUT"
-            echo "testing_url=https://dl.solona.info/$testing_tag/latest.zip" >> "$GITHUB_OUTPUT"
-          fi
+          summary=""
 
-      - name: Update repo.json
-        env:
-          STABLE_VERSION: ${{ steps.releases.outputs.stable_version }}
-          STABLE_URL: ${{ steps.releases.outputs.stable_url }}
-          TESTING_VERSION: ${{ steps.releases.outputs.testing_version }}
-          TESTING_URL: ${{ steps.releases.outputs.testing_url }}
-        run: |
-          set -euo pipefail
+          for entry in "${PLUGINS[@]}"; do
+            IFS='|' read -r name repo manifest prefix icon <<<"$entry"
 
-          # InternalName is dropped from the merge because it is the key this step matches on —
-          # letting the manifest rewrite it would orphan the entry on every later run. IconUrl is
-          # dropped as defence in depth: the manifest's copy points at raw.githubusercontent.com,
-          # and while the jq below already assigns IconUrl unconditionally *after* the merge — so
-          # that assignment, not this del(), is what actually pins the icon to the mirror — keeping
-          # it out of $m means the mirror URL survives if that line is ever moved or dropped.
-          if [ -f stable.json ]; then
-            manifest=$(jq -c 'del(.InternalName, .IconUrl)' stable.json)
-          else
-            manifest='{}'
-          fi
+            releases=$(gh api "repos/$repo/releases?per_page=100")
+            stable_tag=$(newest_tag false '^v[0-9]'       "$releases")
+            testing_tag=$(newest_tag true  '^testing-[0-9]' "$releases")
 
-          # `. + $m` lets the manifest win on every key it defines, while repo.json keeps the ones it
-          # has no concept of: IsHide, IsTestingExclusive, DownloadCount, TestingDalamudApiLevel.
-          # IconUrl and all three DownloadLink* are owned here, written after the merge. Empty
-          # manifest values are merged as-is rather than filtered out, so a release with no changelog
-          # CLEARS the previous one instead of leaving stale text under a new version number.
-          jq \
-            --arg sv "$STABLE_VERSION" \
-            --arg su "$STABLE_URL" \
-            --arg tv "$TESTING_VERSION" \
-            --arg tu "$TESTING_URL" \
-            --argjson t "$(date +%s)" \
-            --argjson m "$manifest" \
-            'map(if .InternalName == "Proteus" then
-                   (. + $m)
-                   | .IconUrl = "https://dl.solona.info/icon.png"
-                   | (if $sv != "" then .AssemblyVersion = $sv | .LastUpdate = $t else . end)
-                   | (if $su != "" then .DownloadLinkInstall = $su | .DownloadLinkUpdate = $su
-                      else . end)
-                   | (if $tv != "" then .TestingAssemblyVersion = $tv | .DownloadLinkTesting = $tu
-                      else del(.TestingAssemblyVersion) end)
-                 else . end)' \
-            repo.json > repo.json.tmp && mv repo.json.tmp repo.json
+            stable_version=""; stable_url=""
+            testing_version=""; testing_url=""
+            rm -f "$name.stable.json" "$name.testing.json"
+
+            # Keep the whole manifest, not just its version. Everything descriptive — Changelog,
+            # Description, Punchline, Tags — is merged below, so the listing tracks what the plugin
+            # actually shipped. Reading only AssemblyVersion is why this file once had no icon and a
+            # Description two rewrites out of date.
+            #
+            # The download links users see go through the Cloudflare mirror, not GitHub: Dalamud
+            # fetches them per install and update, and GitHub throttles anonymous requests by count.
+            # The tag is pinned rather than using /releases/latest/download/ — that redirect costs an
+            # extra request, cannot be cached immutably, and resolves to whichever release GitHub
+            # currently flags as Latest, which is not necessarily a plugin build. The curl below
+            # keeps hitting github.com: it runs once per release inside CI, not on users' machines.
+            #
+            # Per-plugin filenames: two plugins would otherwise race on one stable.json.
+            if [ -n "$stable_tag" ]; then
+              curl -sfL "https://github.com/$repo/releases/download/$stable_tag/latest.zip" -o "$name.stable.zip"
+              unzip -p "$name.stable.zip" "$manifest" > "$name.stable.json"
+              stable_version=$(jq -r '.AssemblyVersion' "$name.stable.json")
+              stable_url="https://dl.solona.info/${prefix}${stable_tag}/latest.zip"
+            fi
+            if [ -n "$testing_tag" ]; then
+              curl -sfL "https://github.com/$repo/releases/download/$testing_tag/latest.zip" -o "$name.testing.zip"
+              unzip -p "$name.testing.zip" "$manifest" > "$name.testing.json"
+              testing_version=$(jq -r '.AssemblyVersion' "$name.testing.json")
+              testing_url="https://dl.solona.info/${prefix}${testing_tag}/latest.zip"
+            fi
+
+            # InternalName is dropped from the merge because it is the key this matches on — letting
+            # the manifest rewrite it would orphan the entry on every later run. IconUrl is dropped
+            # as defence in depth: the manifest's copy points at raw.githubusercontent.com, and while
+            # the jq below assigns IconUrl unconditionally *after* the merge for plugins that have
+            # one, keeping it out of $m means the mirror URL survives if that line is ever moved.
+            if [ -f "$name.stable.json" ]; then
+              m=$(jq -c 'del(.InternalName, .IconUrl)' "$name.stable.json")
+            elif [ -f "$name.testing.json" ]; then
+              # A plugin with no stable release yet still has a manifest worth merging — otherwise a
+              # testing-exclusive listing would sit on whatever was hand-seeded until its first
+              # stable build, which for a new plugin can be a long time.
+              m=$(jq -c 'del(.InternalName, .IconUrl)' "$name.testing.json")
+            else
+              m='{}'
+            fi
+
+            # `. + $m` lets the manifest win on every key it defines, while repo.json keeps the ones
+            # it has no concept of: IsHide, IsTestingExclusive, DownloadCount,
+            # TestingDalamudApiLevel. IconUrl and all three DownloadLink* are owned here, written
+            # after the merge. Empty manifest values are merged as-is rather than filtered out, so a
+            # release with no changelog CLEARS the previous one instead of leaving stale text under a
+            # new version number.
+            jq \
+              --arg n  "$name" \
+              --arg sv "$stable_version" \
+              --arg su "$stable_url" \
+              --arg tv "$testing_version" \
+              --arg tu "$testing_url" \
+              --arg ic "$icon" \
+              --argjson t "$(date +%s)" \
+              --argjson m "$m" \
+              'map(if .InternalName == $n then
+                     (. + $m)
+                     | (if $ic != "" then .IconUrl = $ic else . end)
+                     | (if $sv != "" then .AssemblyVersion = $sv | .LastUpdate = $t else . end)
+                     | (if $su != "" then .DownloadLinkInstall = $su | .DownloadLinkUpdate = $su
+                        else . end)
+                     | (if $tv != "" then .TestingAssemblyVersion = $tv | .DownloadLinkTesting = $tu
+                        else del(.TestingAssemblyVersion) end)
+                   else . end)' \
+              repo.json > repo.json.tmp && mv repo.json.tmp repo.json
+
+            summary="${summary}${summary:+, }${name} ${stable_version:-none} (testing: ${testing_version:-none})"
+          done
+
+          echo "summary=$summary" >> "$GITHUB_OUTPUT"
+        id: sync
 
       - name: Commit
         run: |
           git config user.name "Solona"
           git config user.email "solonamods@gmail.com"
           git add repo.json
-          git diff --staged --quiet || (git commit -m "Sync: Proteus ${{ steps.releases.outputs.stable_version }} (testing: ${{ steps.releases.outputs.testing_version }})" && git push)
+          git diff --staged --quiet || (git commit -m "Sync: ${{ steps.sync.outputs.summary }}" && git push)
