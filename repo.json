@@ -26,10 +26,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2609.351.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-347/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-348/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2609.351.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1788609718,
+    "LastUpdate": 1788622325,
     "Punchline": "Overlay compositor and second-skin renderer for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -39,7 +39,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "More AL tattoo support. Tattoos that show only at night",
-    "TestingAssemblyVersion": "2609.351.0.0"
+    "TestingAssemblyVersion": "2609.370.0.0"
   },
   {
     "Author": "Solona",
