@@ -3,7 +3,7 @@
     "Author": "Solona",
     "Name": "Proteus",
     "InternalName": "Proteus",
-    "AssemblyVersion": "2609.430.0.0",
+    "AssemblyVersion": "2609.434.0.0",
     "Description": "• Lets you use overlays — skin-tight gear, tattoos, scales and the like — as a regular Penumbra mod you can toggle on and off, bind to designs and collections, and more.\n\n• Overlays render two ways. Painted into your skin, except now your overlays are dyeable. Or as a second skin, which lets you use sphere maps, metalness and animated glow that skin materials can't do.\n\n• Cloth overlays can enable skindenting with one click.\n\n• Supports Penumbra .pmp and Onion .omp packs.\n\n• Imports Atramentum Luminis glow tattoos (.ttmp2). Their glow becomes a Proteus overlay you can recolour and dim, with no shader mod needed.\n\n• Import regular old mods and equip them without using a gear slot.\n\n• Add toggles to any mod.\n\nAutomatically make all hairs hat-compatible.\n\nType /proteus to manage your Proteus mods.",
     "ApplicableVersion": "any",
     "Tags": [
@@ -25,11 +25,11 @@
     "TestingDalamudApiLevel": 15,
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://dl.solona.info/v2609.430.0.0/latest.zip",
+    "DownloadLinkInstall": "https://dl.solona.info/v2609.434.0.0/latest.zip",
     "DownloadLinkTesting": "https://dl.solona.info/testing-421/latest.zip",
-    "DownloadLinkUpdate": "https://dl.solona.info/v2609.430.0.0/latest.zip",
+    "DownloadLinkUpdate": "https://dl.solona.info/v2609.434.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1789201885,
+    "LastUpdate": 1789217142,
     "Punchline": "Overlay compositor and second-skin renderer for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -38,7 +38,7 @@
     "LoadPriority": 0,
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
-    "Changelog": "Auto hat compatibility now measures a real hat instead of guessing one.\n\nHair is cut at the hat's own rim, measured once per race from the Wrangler's\nHat out of the game's own files, and a thin ring of hair just above that rim\nis flattened against your head rather than removed - so a hat that sits a\nlittle higher than the reference shows flattened hair instead of bare scalp.\n\nFixed: a wearer whose face is not replaced by a mod was being fitted against\na skull guessed from their own hair, which put the cut around ear height and\ndeleted most of the hairstyle. The face is now read from the game's own data.\n\nFixed: undo could not reach a hairstyle you were no longer wearing. Hair mods\nship one model per race, so fitting as one race and then changing to another\nleft the first patch unreachable. There is now an undo for everything Proteus\nhas changed in a mod, and the Hats panel says how many that is.\n\nFixed: a hairstyle that arrived with hat support inherited from the hair it\nwas built on - hiding far more hair than a hat covers - was credited to its\nauthor and left alone. Proteus now measures that support and replaces it when\nit is hiding hair no hat covers.\n\nEvery hairstyle Proteus has already fitted is put back and refitted the next\ntime you wear it.\n\nAuto hat compatibility remains off by default. Turn it on under\n/proteus > Settings > Hats.",
+    "Changelog": "Asymmetric faces, without a second head\n\nA face texture painted as two halves — the character's right side in the right half\nof the image, their left side in the left — now renders on the face itself.\n\nProteus used to do it by cutting a second skin and floating it a millimetre in front\nof the head. That works for a mark on an arm and cannot work for a face: the copy\ncarries none of the shape keys that drive expressions, so it sat frozen while the\nreal face underneath blinked and talked, and a full-face texture is opaque, so what\ngot duplicated was the whole head rather than a patch of it.\n\nNow the face the game is already drawing is what moves. Its UVs are rewritten onto\nthe doubled sheet, so the character keeps their own skin material and their own skin\ntone, every expression still works, and nothing is added to the scene. The face's\nnormal and mask move with it, at every level of detail, so the face does not revert\nto nonsense when the camera pulls back.\n\nThe Create tab now fills in both of its own answers when you point it at a face: a\nface texture is the whole skin, and an image twice as wide as that face's own\ntexture is a doubled sheet. \"Twice as wide\" is not one shape for every character —\nan Au Ra face texture is square, because the horns take the right half of it, so a\ndoubled one is twice as wide as it is tall, while every other race's doubled sheet\ncomes out square — so the image you pick is measured against the face it is actually\nfor. The tick that says so is now called \"This face texture is asymmetric\", in all\neight languages.\n\nArt that genuinely needs the gear shader — a glow, a colour table, a mask shell —\nkeeps the second skin it always had.\n\nAlso in this release: a mesh toggle can now be created on a part whose author\nalready ships one.",
     "TestingAssemblyVersion": "2609.421.0.0"
   },
   {
