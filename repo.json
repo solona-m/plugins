@@ -26,10 +26,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2609.444.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-458/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-461/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2609.444.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1789404442,
+    "LastUpdate": 1789406515,
     "Punchline": "Overlay compositor and second-skin renderer for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -39,7 +39,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "3.5 bug fixes",
-    "TestingAssemblyVersion": "2609.458.0.0"
+    "TestingAssemblyVersion": "2609.461.0.0"
   },
   {
     "Author": "Solona",
