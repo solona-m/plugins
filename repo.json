@@ -26,10 +26,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2609.446.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-472/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-485/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2609.446.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1789463940,
+    "LastUpdate": 1789511896,
     "Punchline": "Overlay compositor and second-skin renderer for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -39,7 +39,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Fixed: stutters every half minute or so, caused by the hat compatibility watcher.\n\nProteus checked which hairstyle you were wearing once a second, on the game's\nown thread, whether or not you had ever turned hat compatibility on. On a busy\ndisk or a heavily modded character that check could freeze the game for up to a\nsecond and a half at a time. It now only looks when a hairstyle actually\nchanges, does the slow part in the background, and does nothing at all while\n\"Make hairstyles fit under hats\" is off - which is the default.\n\nFixed: stockings missing from the hips to the ankles on some leg gear.\n\nA few gear mods still carry an empty leftover skin from the vanilla model ahead\nof their real body skin. Proteus read that leftover to decide which body the\ngear was made for, got it wrong, and left the legs out of the second skin -\nHeart Breaker was one. It now judges by the skin the model actually draws.",
-    "TestingAssemblyVersion": "2609.472.0.0"
+    "TestingAssemblyVersion": "2609.486.0.0"
   },
   {
     "Author": "Solona",
