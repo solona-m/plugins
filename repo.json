@@ -3,8 +3,8 @@
     "Author": "Solona",
     "Name": "Proteus",
     "InternalName": "Proteus",
-    "AssemblyVersion": "2609.446.0.0",
-    "Description": "• Lets you use overlays — skin-tight gear, tattoos, scales and the like — as a regular Penumbra mod you can toggle on and off, bind to designs and collections, and more.\n\n• Overlays render two ways. Painted into your skin, except now your overlays are dyeable. Or as a second skin, which lets you use sphere maps, metalness and animated glow that skin materials can't do.\n\n• Cloth overlays can enable skindenting with one click.\n\n• Supports Penumbra .pmp and Onion .omp packs.\n\n• Imports Atramentum Luminis glow tattoos (.ttmp2). Their glow becomes a Proteus overlay you can recolour and dim, with no shader mod needed.\n\n• Import regular old mods and equip them without using a gear slot.\n\n• Add toggles to any mod.\n\nAutomatically make all hairs hat-compatible.\n\nType /proteus to manage your Proteus mods.",
+    "AssemblyVersion": "2609.490.0.0",
+    "Description": "• Lets you use overlays — skin-tight gear, tattoos, scales and the like — as a regular Penumbra mod you can toggle on and off, recolour, bind to Glamourer designs and collections, and more.\n\n• Overlays render two ways. Painted into your skin, except now your overlays are dyeable. Or as a second skin, which lets you use sphere maps, metalness and animated glow that skin materials can't do.\n\n• Reshape any mod's models. Paint on your character to pull clothing clear of your body, push it in, smooth it, stretch it across a hollow, or paint where the wind sways it. Hair works too. Edits save into the mod and can be undone.\n\n• Add on/off switches to any part of any mod.\n\n• Make modded hair fit under hats, and undo it any time.\n\n• Import regular old mods and equip them without using a gear slot.\n\n• Save a mod's look as a preset you can wear, share and swap.\n\n• Imports Penumbra .pmp, Onion .omp and Atramentum Luminis .ttmp2 glow tattoos, with no shader mod needed.\n\n• Cloth overlays can enable skindenting with one click.\n\nType /proteus to manage your Proteus mods.",
     "ApplicableVersion": "any",
     "Tags": [
       "texture",
@@ -16,7 +16,10 @@
       "gear",
       "glamour",
       "color",
-      "mod"
+      "mod",
+      "model",
+      "hair",
+      "hat"
     ],
     "CategoryTags": [
       "utility"
@@ -25,12 +28,12 @@
     "TestingDalamudApiLevel": 15,
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://dl.solona.info/v2609.446.0.0/latest.zip",
+    "DownloadLinkInstall": "https://dl.solona.info/v2609.490.0.0/latest.zip",
     "DownloadLinkTesting": "https://dl.solona.info/testing-487/latest.zip",
-    "DownloadLinkUpdate": "https://dl.solona.info/v2609.446.0.0/latest.zip",
+    "DownloadLinkUpdate": "https://dl.solona.info/v2609.490.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1789549880,
-    "Punchline": "Overlay compositor and second-skin renderer for Penumbra mods",
+    "LastUpdate": 1789570584,
+    "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
     "LoadSync": false,
@@ -38,7 +41,7 @@
     "LoadPriority": 0,
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
-    "Changelog": "Fixed: stutters every half minute or so, caused by the hat compatibility watcher.\n\nProteus checked which hairstyle you were wearing once a second, on the game's\nown thread, whether or not you had ever turned hat compatibility on. On a busy\ndisk or a heavily modded character that check could freeze the game for up to a\nsecond and a half at a time. It now only looks when a hairstyle actually\nchanges, does the slow part in the background, and does nothing at all while\n\"Make hairstyles fit under hats\" is off - which is the default.\n\nFixed: stockings missing from the hips to the ankles on some leg gear.\n\nA few gear mods still carry an empty leftover skin from the vanilla model ahead\nof their real body skin. Proteus read that leftover to decide which body the\ngear was made for, got it wrong, and left the legs out of the second skin -\nHeart Breaker was one. It now judges by the skin the model actually draws.",
+    "Changelog": "New: Studio - reshape a garment right on your character.\n\nThe new Studio tab (the second tab) lets you fix a body poking through clothes\nwithout leaving the game. Brush straight onto the character and watch the\ngarment change as you paint:\n\n- Pull out and Push in move cloth away from or toward the skin.\n- Relax smooths a lumpy patch; Bridge stretches cloth straight across a hollow\n  such as a cleft.\n- Move picks up one part of a garment and drags it with arrows, and can carry\n  the cloth around it along.\n- Wind paints how much the game's wind sways each part of a garment.\n- Mirror left/right, lock parts you don't want touched, brush sizes down to\n  1 mm, and Apply to other sizes to carry an edit onto the mod's other bodies.\n\nEdits save into the mod on their own, Ctrl+Z undoes a stroke, and \"Undo saved\nchanges\" puts the original file back. Hair can be brushed too, and garments\nfrom an imported content pack can be edited like any other.\n\nNew: reinforced toes for sheer stockings.\n\nWith a toe cap on, Advanced has a Reinforced toe checkbox and a Density slider.\nLike real hosiery, the toe is knitted heavier than the leg, so it reads as a\ndarker panel with the toes still faintly showing through.\n\nChanged: the second skin sits much closer to the body.\n\nIt used to float 1 mm off the skin and now sits at 0.05 mm, so tight clothing\nand stockings follow the body far more closely.\n\nChanged: \"Overlay gen2/vanilla\" replaces the Bodies dropdown.\n\nIt is a single checkbox, on by default. Bibo and gen3/Eve bodies are always\noverlaid.\n\nImproved: cleavage, buttocks and crotch smoothing.\n\n\"Span the cleavage\" and the buttocks span now work on Rue+ and bodies with\nshape keys turned on, no longer clip into large breasts, and no longer leave a\nseam at the waist. The skin tucked under each breast is carried in a gentle\ncurve instead of a W. On Rue+, \"smooth between the legs\" lays the garment flat\nacross the crotch instead of following the skin into it. Changes to a body\nmod or its options now take effect without toggling a Proteus mod.\n\nFixed: a bare band with a white rectangle over the hips on AB Body.\n\nFixed: skin showing through stockings behind the toe knuckles with a toe cap on.\n\nFixed: importing older (v3) content packs.\n\nThese failed every time, and an import could wipe a mod's name and groups if\nPenumbra was still busy with the pack. Imports no longer freeze the game while\nthey wait on Penumbra.\n\nFixed: body smoothing taking over chest pieces from ordinary gear mods.\n\nFixed: chat noise. The toe cap, glow and debugging notices now go to the log\ninstead of chat.\n\nAlso: Skindent has moved to a new Effects section in the colour editor, and Proteus is\nnow licensed under AGPL-3.0-or-later.",
     "TestingAssemblyVersion": "2609.487.0.0"
   },
   {
