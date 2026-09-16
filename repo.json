@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2609.490.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-487/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-492/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2609.490.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1789570584,
+    "LastUpdate": 1789595872,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "New: Studio - reshape a garment right on your character.\n\nThe new Studio tab (the second tab) lets you fix a body poking through clothes\nwithout leaving the game. Brush straight onto the character and watch the\ngarment change as you paint:\n\n- Pull out and Push in move cloth away from or toward the skin.\n- Relax smooths a lumpy patch; Bridge stretches cloth straight across a hollow\n  such as a cleft.\n- Move picks up one part of a garment and drags it with arrows, and can carry\n  the cloth around it along.\n- Wind paints how much the game's wind sways each part of a garment.\n- Mirror left/right, lock parts you don't want touched, brush sizes down to\n  1 mm, and Apply to other sizes to carry an edit onto the mod's other bodies.\n\nEdits save into the mod on their own, Ctrl+Z undoes a stroke, and \"Undo saved\nchanges\" puts the original file back. Hair can be brushed too, and garments\nfrom an imported content pack can be edited like any other.\n\nNew: reinforced toes for sheer stockings.\n\nWith a toe cap on, Advanced has a Reinforced toe checkbox and a Density slider.\nLike real hosiery, the toe is knitted heavier than the leg, so it reads as a\ndarker panel with the toes still faintly showing through.\n\nChanged: the second skin sits much closer to the body.\n\nIt used to float 1 mm off the skin and now sits at 0.05 mm, so tight clothing\nand stockings follow the body far more closely.\n\nChanged: \"Overlay gen2/vanilla\" replaces the Bodies dropdown.\n\nIt is a single checkbox, on by default. Bibo and gen3/Eve bodies are always\noverlaid.\n\nImproved: cleavage, buttocks and crotch smoothing.\n\n\"Span the cleavage\" and the buttocks span now work on Rue+ and bodies with\nshape keys turned on, no longer clip into large breasts, and no longer leave a\nseam at the waist. The skin tucked under each breast is carried in a gentle\ncurve instead of a W. On Rue+, \"smooth between the legs\" lays the garment flat\nacross the crotch instead of following the skin into it. Changes to a body\nmod or its options now take effect without toggling a Proteus mod.\n\nFixed: a bare band with a white rectangle over the hips on AB Body.\n\nFixed: skin showing through stockings behind the toe knuckles with a toe cap on.\n\nFixed: importing older (v3) content packs.\n\nThese failed every time, and an import could wipe a mod's name and groups if\nPenumbra was still busy with the pack. Imports no longer freeze the game while\nthey wait on Penumbra.\n\nFixed: body smoothing taking over chest pieces from ordinary gear mods.\n\nFixed: chat noise. The toe cap, glow and debugging notices now go to the log\ninstead of chat.\n\nAlso: Skindent has moved to a new Effects section in the colour editor, and Proteus is\nnow licensed under AGPL-3.0-or-later.",
-    "TestingAssemblyVersion": "2609.487.0.0"
+    "TestingAssemblyVersion": "2609.492.0.0"
   },
   {
     "Author": "Solona",
