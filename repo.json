@@ -3,7 +3,7 @@
     "Author": "Solona",
     "Name": "Proteus",
     "InternalName": "Proteus",
-    "AssemblyVersion": "2609.497.0.0",
+    "AssemblyVersion": "2609.498.0.0",
     "Description": "• Lets you use overlays — skin-tight gear, tattoos, scales and the like — as a regular Penumbra mod you can toggle on and off, recolour, bind to Glamourer designs and collections, and more.\n\n• Overlays render two ways. Painted into your skin, except now your overlays are dyeable. Or as a second skin, which lets you use sphere maps, metalness and animated glow that skin materials can't do.\n\n• Reshape any mod's models. Paint on your character to pull clothing clear of your body, push it in, smooth it, stretch it across a hollow, or paint where the wind sways it. Hair works too. Edits save into the mod and can be undone.\n\n• Add on/off switches to any part of any mod.\n\n• Make modded hair fit under hats, and undo it any time.\n\n• Import regular old mods and equip them without using a gear slot.\n\n• Save a mod's look as a preset you can wear, share and swap.\n\n• Imports Penumbra .pmp, Onion .omp and Atramentum Luminis .ttmp2 glow tattoos, with no shader mod needed.\n\n• Cloth overlays can enable skindenting with one click.\n\nType /proteus to manage your Proteus mods.",
     "ApplicableVersion": "any",
     "Tags": [
@@ -28,11 +28,11 @@
     "TestingDalamudApiLevel": 15,
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://dl.solona.info/v2609.497.0.0/latest.zip",
+    "DownloadLinkInstall": "https://dl.solona.info/v2609.498.0.0/latest.zip",
     "DownloadLinkTesting": "https://dl.solona.info/testing-504/latest.zip",
-    "DownloadLinkUpdate": "https://dl.solona.info/v2609.497.0.0/latest.zip",
+    "DownloadLinkUpdate": "https://dl.solona.info/v2609.498.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1789681426,
+    "LastUpdate": 1789688041,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -41,7 +41,7 @@
     "LoadPriority": 0,
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
-    "Changelog": "Crash fix for older and budget CPUs\n\nFixed: the game could close without warning the first time Proteus built a\ntexture. This happened on processors without AVX2, which includes most Pentium\nand Celeron chips and some older Core and AMD parts. Proteus now checks the\nprocessor first and uses its slower built-in texture code there instead.\n\nNothing changes on other processors.",
+    "Changelog": "Fixes the last release on older and budget CPUs\n\nIf the previous version stopped Proteus drawing anything, or made the game\nstutter, this fixes it.\n\nThat release stopped a crash on processors without AVX2 by switching those\nmachines to Proteus's slow built-in texture code. It turned out to be far too\nslow to be usable: Proteus never finished building a look before something\nasked it to start again, so nothing appeared, and the retries ate the\nprocessor. The fast texture code is now built to run on every processor, so\nthose machines get the normal speed and no crash.\n\nNothing changes on processors that were already fine.\n\nPlease say if anything is still missing or still stutters.",
     "TestingAssemblyVersion": "2609.504.0.0"
   },
   {
