@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2609.496.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-492/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-498/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2609.496.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1789649400,
+    "LastUpdate": 1789661533,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Performance work",
-    "TestingAssemblyVersion": "2609.492.0.0"
+    "TestingAssemblyVersion": "2609.498.0.0"
   },
   {
     "Author": "Solona",
