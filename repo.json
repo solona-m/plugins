@@ -3,7 +3,7 @@
     "Author": "Solona",
     "Name": "Proteus",
     "InternalName": "Proteus",
-    "AssemblyVersion": "2609.498.0.0",
+    "AssemblyVersion": "2609.509.0.0",
     "Description": "• Lets you use overlays — skin-tight gear, tattoos, scales and the like — as a regular Penumbra mod you can toggle on and off, recolour, bind to Glamourer designs and collections, and more.\n\n• Overlays render two ways. Painted into your skin, except now your overlays are dyeable. Or as a second skin, which lets you use sphere maps, metalness and animated glow that skin materials can't do.\n\n• Reshape any mod's models. Paint on your character to pull clothing clear of your body, push it in, smooth it, stretch it across a hollow, or paint where the wind sways it. Hair works too. Edits save into the mod and can be undone.\n\n• Add on/off switches to any part of any mod.\n\n• Make modded hair fit under hats, and undo it any time.\n\n• Import regular old mods and equip them without using a gear slot.\n\n• Save a mod's look as a preset you can wear, share and swap.\n\n• Imports Penumbra .pmp, Onion .omp and Atramentum Luminis .ttmp2 glow tattoos, with no shader mod needed.\n\n• Cloth overlays can enable skindenting with one click.\n\nType /proteus to manage your Proteus mods.",
     "ApplicableVersion": "any",
     "Tags": [
@@ -28,11 +28,11 @@
     "TestingDalamudApiLevel": 15,
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://dl.solona.info/v2609.498.0.0/latest.zip",
+    "DownloadLinkInstall": "https://dl.solona.info/v2609.509.0.0/latest.zip",
     "DownloadLinkTesting": "https://dl.solona.info/testing-508/latest.zip",
-    "DownloadLinkUpdate": "https://dl.solona.info/v2609.498.0.0/latest.zip",
+    "DownloadLinkUpdate": "https://dl.solona.info/v2609.509.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1789721682,
+    "LastUpdate": 1789736251,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -41,7 +41,7 @@
     "LoadPriority": 0,
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
-    "Changelog": "Fixes the last release on older and budget CPUs\n\nIf the previous version stopped Proteus drawing anything, or made the game\nstutter, this fixes it.\n\nThat release stopped a crash on processors without AVX2 by switching those\nmachines to Proteus's slow built-in texture code. It turned out to be far too\nslow to be usable: Proteus never finished building a look before something\nasked it to start again, so nothing appeared, and the retries ate the\nprocessor. The fast texture code is now built to run on every processor, so\nthose machines get the normal speed and no crash.\n\nNothing changes on processors that were already fine.\n\nPlease say if anything is still missing or still stutters.",
+    "Changelog": "Rotate and scale in Studio, and bound designs that survive a login\n\nNew in Studio: two tools beside Move. Rotate puts a ring on the part you\npicked, so you can turn it around any axis. Scale lets you drag right to\ngrow the part and left to shrink it. Nearby cloth follows as it does when\nyou move a part, and each drag is one undo step.\n\nFixes:\n\n- A design bound to a Glamourer automation now comes back in full when you\n  log in, relog or switch characters. Before, it could keep the previous\n  look's mod settings under the new look's colours.\n- You can now change the colours of each item in an imported mod while it is\n  bound to a design. Before, only the colour grid moved, and items that share\n  an option overwrote each other.\n- An imported piece you are wearing now draws even when the pack option that\n  carries its textures is unticked. It no longer goes invisible when the game\n  redraws.\n- Ears, tails and other pieces that use the hair shader now say they follow\n  your hair colour. They no longer show the general \"no colours\" warning.\n- On a PC too slow to compress textures in time, Proteus now leaves them\n  uncompressed, even if compression is ticked, so a look can still finish\n  and draw. An orange note under the setting says when this happens.\n\nPlease say if anything looks wrong.",
     "TestingAssemblyVersion": "2609.508.0.0"
   },
   {
