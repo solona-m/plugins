@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2609.509.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-510/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-511/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2609.509.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1789740445,
+    "LastUpdate": 1789743828,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Rotate and scale in Studio, and bound designs that survive a login\n\nNew in Studio: two tools beside Move. Rotate puts a ring on the part you\npicked, so you can turn it around any axis. Scale lets you drag right to\ngrow the part and left to shrink it. Nearby cloth follows as it does when\nyou move a part, and each drag is one undo step.\n\nFixes:\n\n- A design bound to a Glamourer automation now comes back in full when you\n  log in, relog or switch characters. Before, it could keep the previous\n  look's mod settings under the new look's colours.\n- You can now change the colours of each item in an imported mod while it is\n  bound to a design. Before, only the colour grid moved, and items that share\n  an option overwrote each other.\n- An imported piece you are wearing now draws even when the pack option that\n  carries its textures is unticked. It no longer goes invisible when the game\n  redraws.\n- Ears, tails and other pieces that use the hair shader now say they follow\n  your hair colour. They no longer show the general \"no colours\" warning.\n- On a PC too slow to compress textures in time, Proteus now leaves them\n  uncompressed, even if compression is ticked, so a look can still finish\n  and draw. An orange note under the setting says when this happens.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2609.510.0.0"
+    "TestingAssemblyVersion": "2609.511.0.0"
   },
   {
     "Author": "Solona",
