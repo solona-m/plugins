@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2609.498.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-507/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-508/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2609.498.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1789688358,
+    "LastUpdate": 1789690868,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Fixes the last release on older and budget CPUs\n\nIf the previous version stopped Proteus drawing anything, or made the game\nstutter, this fixes it.\n\nThat release stopped a crash on processors without AVX2 by switching those\nmachines to Proteus's slow built-in texture code. It turned out to be far too\nslow to be usable: Proteus never finished building a look before something\nasked it to start again, so nothing appeared, and the retries ate the\nprocessor. The fast texture code is now built to run on every processor, so\nthose machines get the normal speed and no crash.\n\nNothing changes on processors that were already fine.\n\nPlease say if anything is still missing or still stutters.",
-    "TestingAssemblyVersion": "2609.507.0.0"
+    "TestingAssemblyVersion": "2609.508.0.0"
   },
   {
     "Author": "Solona",
