@@ -3,7 +3,7 @@
     "Author": "Solona",
     "Name": "Proteus",
     "InternalName": "Proteus",
-    "AssemblyVersion": "2609.510.0.0",
+    "AssemblyVersion": "2609.511.0.0",
     "Description": "• Lets you use overlays — skin-tight gear, tattoos, scales and the like — as a regular Penumbra mod you can toggle on and off, recolour, bind to Glamourer designs and collections, and more.\n\n• Overlays render two ways. Painted into your skin, except now your overlays are dyeable. Or as a second skin, which lets you use sphere maps, metalness and animated glow that skin materials can't do.\n\n• Reshape any mod's models. Paint on your character to pull clothing clear of your body, push it in, smooth it, stretch it across a hollow, or paint where the wind sways it. Hair works too. Edits save into the mod and can be undone.\n\n• Add on/off switches to any part of any mod.\n\n• Make modded hair fit under hats, and undo it any time.\n\n• Import regular old mods and equip them without using a gear slot.\n\n• Save a mod's look as a preset you can wear, share and swap.\n\n• Imports Penumbra .pmp, Onion .omp and Atramentum Luminis .ttmp2 glow tattoos, with no shader mod needed.\n\n• Cloth overlays can enable skindenting with one click.\n\nType /proteus to manage your Proteus mods.",
     "ApplicableVersion": "any",
     "Tags": [
@@ -28,11 +28,11 @@
     "TestingDalamudApiLevel": 15,
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://dl.solona.info/v2609.510.0.0/latest.zip",
+    "DownloadLinkInstall": "https://dl.solona.info/v2609.511.0.0/latest.zip",
     "DownloadLinkTesting": "https://dl.solona.info/testing-515/latest.zip",
-    "DownloadLinkUpdate": "https://dl.solona.info/v2609.510.0.0/latest.zip",
+    "DownloadLinkUpdate": "https://dl.solona.info/v2609.511.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1789822065,
+    "LastUpdate": 1789838523,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -41,7 +41,7 @@
     "LoadPriority": 0,
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
-    "Changelog": "Blend modes now work on bare skin, like Photoshop\n\nMultiply, Screen, Overlay, Add and Replace used to show nothing unless the\nsame mod had already painted something underneath. They only coloured that\nmod's own fabric, so a tattoo set to Multiply on bare skin disappeared.\n\nA row set to any of those modes now has an Onto choice next to Blend:\n\n- Everything beneath: blends with the skin and every layer under it, like a\n  Photoshop blend layer. Multiply drops white out and keeps the dark lines.\n  This is the default when you switch a row to one of these modes.\n- This mod's paint only: the old behaviour. The print only colours what this\n  mod's other layers painted, so a rainbow on a fishnet colours the threads\n  and leaves the holes as skin.\n\nRows you had already set to one of these modes keep working exactly as\nbefore. Change Onto if you want one of them to land on the skin.\n\nPlease say if anything looks wrong.",
+    "Changelog": "Fixes Oval Spectacles being taken off\n\nIf you wear Oval Spectacles, Proteus kept removing them, whether \"use\nglasses\" was ticked or not. Proteus used that same pair as the invisible\nglasses that carry a second skin, and mistook yours for its own.\n\nProteus now uses Gold Eyepatch (Right) as its invisible pair, and only ever\nremoves glasses it put on itself. Your own glasses stay on and stay visible,\nincluding a pair of the same kind Proteus uses.\n\nIf you see Oval Spectacles on your character that you didn't put on, they\nwere left over from an older version: take them off once and they won't\ncome back.\n\nPlease say if anything looks wrong.",
     "TestingAssemblyVersion": "2609.515.0.0"
   },
   {
