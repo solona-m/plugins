@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2609.511.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-517/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-518/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2609.511.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1789909156,
+    "LastUpdate": 1789912343,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Fixes Oval Spectacles being taken off\n\nIf you wear Oval Spectacles, Proteus kept removing them, whether \"use\nglasses\" was ticked or not. Proteus used that same pair as the invisible\nglasses that carry a second skin, and mistook yours for its own.\n\nProteus now uses Gold Eyepatch (Right) as its invisible pair, and only ever\nremoves glasses it put on itself. Your own glasses stay on and stay visible,\nincluding a pair of the same kind Proteus uses.\n\nIf you see Oval Spectacles on your character that you didn't put on, they\nwere left over from an older version: take them off once and they won't\ncome back.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2609.517.0.0"
+    "TestingAssemblyVersion": "2609.518.0.0"
   },
   {
     "Author": "Solona",
