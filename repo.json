@@ -3,7 +3,7 @@
     "Author": "Solona",
     "Name": "Proteus",
     "InternalName": "Proteus",
-    "AssemblyVersion": "2609.622.0.0",
+    "AssemblyVersion": "2609.623.0.0",
     "Description": "• Lets you use overlays — skin-tight gear, tattoos, scales and the like — as a regular Penumbra mod you can toggle on and off, recolour, bind to Glamourer designs and collections, and more.\n\n• Overlays render two ways. Painted into your skin, except now your overlays are dyeable. Or as a second skin, which lets you use sphere maps, metalness and animated glow that skin materials can't do.\n\n• Reshape any mod's models. Paint on your character to pull clothing clear of your body, push it in, smooth it, stretch it across a hollow, or paint where the wind sways it. Hair works too. Edits save into the mod and can be undone.\n\n• Add on/off switches to any part of any mod.\n\n• Make modded hair fit under hats, and undo it any time.\n\n• Import regular old mods and equip them without using a gear slot.\n\n• Save a mod's look as a preset you can wear, share and swap.\n\n• Imports Penumbra .pmp, Onion .omp and Atramentum Luminis .ttmp2 glow tattoos, with no shader mod needed.\n\n• Cloth overlays can enable skindenting with one click.\n\nType /proteus to manage your Proteus mods.",
     "ApplicableVersion": "any",
     "Tags": [
@@ -28,11 +28,11 @@
     "TestingDalamudApiLevel": 15,
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://dl.solona.info/v2609.622.0.0/latest.zip",
+    "DownloadLinkInstall": "https://dl.solona.info/v2609.623.0.0/latest.zip",
     "DownloadLinkTesting": "https://dl.solona.info/testing-542/latest.zip",
-    "DownloadLinkUpdate": "https://dl.solona.info/v2609.622.0.0/latest.zip",
+    "DownloadLinkUpdate": "https://dl.solona.info/v2609.623.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1790455203,
+    "LastUpdate": 1790461014,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -41,7 +41,7 @@
     "LoadPriority": 0,
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
-    "Changelog": "Body size: refit an outfit to another size or another body\n\nThe Studio has a new Body size tool. Pick a garment and the body it was\nmade for (Proteus reads it off the garment for you), choose the sizes or\nthe body you actually wear, and it refits the outfit to them:\n\n- Between sizes of one body mod, like Neolithe XS to L.\n- From one body mod to another that shares its texture layout, like\n  Neolithe to Rue+ or Yet Another Body+, with the rig moved to the new\n  body's bones.\n- Men's bodies as well as women's. It never refits across the two.\n- The game's own gear, not only modded outfits.\n\nThe refit keeps the cloth on the side of the skin the author put it on,\npushes it back out where the new body comes through, swaps the garment's\nskin for the new body's, and leaves hard pieces - buckles, chains, heels -\ntheir own shape. Keep shape on a part marks it as one of those. Save the\nrefit into the mod's own size list, or into a mod of its own, and it is\nswitched on for you. Refits open in TexTools and Blender like any other\nmodel.\n\nAlso new:\n- Move, turn and scale single polygons in the Studio, softly along the\n  surface.\n- A distance limit slider for the brushes.\n- A short what's-new window after an update, and tips the first time you\n  use Body size.\n- Hat compat is on by default, only fits hair while a hat is worn, and\n  keeps a Miqo'te's ear fur.\n- /proteus refresh recomposites from chat.\n- Import a mod that is already installed in Penumbra, and give imported\n  mods Parts tab switches.\n- A Copy Logs button in Settings, with your Windows user name taken out.\n- A restyled window, and a mod's picture when you hover over it.\n\nFixes:\n- Proteus no longer loses track of its invisible glasses and leaves them on\n  you.\n- A face is no longer rejected for the body under it.\n- The material variant the author dressed is published, not the last one.\n- A pack's uncompressed textures are compressed too, and index textures\n  when that loses nothing.\n\nPlease say if anything looks wrong.",
+    "Changelog": "Body size: less clipping when a refit goes to a bigger body\n\nRefitting a close-fitting top onto a larger body, such as Neolithe L onto\nYAB or Rue+ Large, could leave a band of the cloth where it sat on the old\nbody, with the new, bigger bust coming straight through it. The cloth now\nfollows the new body there. Going down a size keeps the cloth outside the\nskin too.\n\nParts you have told Body size to leave alone are never moved while the\nrefit tidies up the cloth around them.\n\nPlease say if anything looks wrong.",
     "TestingAssemblyVersion": "2609.620.0.0"
   },
   {
