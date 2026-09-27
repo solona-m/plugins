@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2609.624.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-543/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-544/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2609.624.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1790520100,
+    "LastUpdate": 1790530191,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Body size: refit men's gear between the game's body and The Body SE\n\nRefitting the game's own men's gear onto The Body SE was refused with\n\"different texture layouts (male vanilla and tbse)\". The two bodies do\nshare a layout - TBSE's is the game's doubled - so the refit now goes\nthrough, onto TBSE and back from it.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2609.624.0.0"
+    "TestingAssemblyVersion": "2609.626.0.0"
   },
   {
     "Author": "Solona",
