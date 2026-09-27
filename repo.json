@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2609.623.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-542/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-543/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2609.623.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1790461014,
+    "LastUpdate": 1790479800,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Body size: less clipping when a refit goes to a bigger body\n\nRefitting a close-fitting top onto a larger body, such as Neolithe L onto\nYAB or Rue+ Large, could leave a band of the cloth where it sat on the old\nbody, with the new, bigger bust coming straight through it. The cloth now\nfollows the new body there. Going down a size keeps the cloth outside the\nskin too.\n\nParts you have told Body size to leave alone are never moved while the\nrefit tidies up the cloth around them.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2609.620.0.0"
+    "TestingAssemblyVersion": "2609.624.0.0"
   },
   {
     "Author": "Solona",
