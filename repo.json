@@ -3,7 +3,7 @@
     "Author": "Solona",
     "Name": "Proteus",
     "InternalName": "Proteus",
-    "AssemblyVersion": "2609.624.0.0",
+    "AssemblyVersion": "2609.631.0.0",
     "Description": "• Lets you use overlays — skin-tight gear, tattoos, scales and the like — as a regular Penumbra mod you can toggle on and off, recolour, bind to Glamourer designs and collections, and more.\n\n• Overlays render two ways. Painted into your skin, except now your overlays are dyeable. Or as a second skin, which lets you use sphere maps, metalness and animated glow that skin materials can't do.\n\n• Reshape any mod's models. Paint on your character to pull clothing clear of your body, push it in, smooth it, stretch it across a hollow, or paint where the wind sways it. Hair works too. Edits save into the mod and can be undone.\n\n• Add on/off switches to any part of any mod.\n\n• Make modded hair fit under hats, and undo it any time.\n\n• Import regular old mods and equip them without using a gear slot.\n\n• Save a mod's look as a preset you can wear, share and swap.\n\n• Imports Penumbra .pmp, Onion .omp and Atramentum Luminis .ttmp2 glow tattoos, with no shader mod needed.\n\n• Cloth overlays can enable skindenting with one click.\n\nType /proteus to manage your Proteus mods.",
     "ApplicableVersion": "any",
     "Tags": [
@@ -28,11 +28,11 @@
     "TestingDalamudApiLevel": 15,
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://dl.solona.info/v2609.624.0.0/latest.zip",
+    "DownloadLinkInstall": "https://dl.solona.info/v2609.631.0.0/latest.zip",
     "DownloadLinkTesting": "https://dl.solona.info/testing-546/latest.zip",
-    "DownloadLinkUpdate": "https://dl.solona.info/v2609.624.0.0/latest.zip",
+    "DownloadLinkUpdate": "https://dl.solona.info/v2609.631.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1790592234,
+    "LastUpdate": 1790608098,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -41,7 +41,7 @@
     "LoadPriority": 0,
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
-    "Changelog": "Body size: refit men's gear between the game's body and The Body SE\n\nRefitting the game's own men's gear onto The Body SE was refused with\n\"different texture layouts (male vanilla and tbse)\". The two bodies do\nshare a layout - TBSE's is the game's doubled - so the refit now goes\nthrough, onto TBSE and back from it.\n\nPlease say if anything looks wrong.",
+    "Changelog": "Hat support, a Glamourer crash, and body size fixes\n\n- Hats: a new setting, \"Replace hat support a hairstyle came with\" (off\n  by default), fits a hat onto a hairstyle that shipped its own hat\n  support. Untick it and every hairstyle goes back to how its author\n  made it.\n- Glamourer: applying gear from Glamourer's Unlocks tab could crash\n  Glamourer's window while Proteus was on. It no longer does.\n- Body size: a refit no longer warns that the model \"will look like the\n  old size from a distance\". Mostly the warning was wrong; where it was\n  right, the model now keeps the new size at any distance.\n- Body size: refitting onto some bodies (XERX Hefty Pecs+ among them)\n  could break the model and the Parts preview. That is fixed.\n\nPlease say if anything looks wrong.",
     "TestingAssemblyVersion": "2609.629.0.0"
   },
   {
