@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2609.631.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-547/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-548/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2609.631.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1790677901,
+    "LastUpdate": 1790718801,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Hat support, a Glamourer crash, and body size fixes\n\n- Hats: a new setting, \"Replace hat support a hairstyle came with\" (off\n  by default), fits a hat onto a hairstyle that shipped its own hat\n  support. Untick it and every hairstyle goes back to how its author\n  made it.\n- Glamourer: applying gear from Glamourer's Unlocks tab could crash\n  Glamourer's window while Proteus was on. It no longer does.\n- Body size: a refit no longer warns that the model \"will look like the\n  old size from a distance\". Mostly the warning was wrong; where it was\n  right, the model now keeps the new size at any distance.\n- Body size: refitting onto some bodies (XERX Hefty Pecs+ among them)\n  could break the model and the Parts preview. That is fixed.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2609.630.0.0"
+    "TestingAssemblyVersion": "2609.637.0.0"
   },
   {
     "Author": "Solona",
