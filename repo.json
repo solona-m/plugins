@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2609.641.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-551/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-552/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2609.641.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1790851753,
+    "LastUpdate": 1790883599,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Body size: men's-only gear, gen3 legs onto bibo bodies, and a quieter panel\n\n- Gear the game only ships as a man's model (most boots) is now refitted\n  as a model of your own race. Before, a woman's boots were measured\n  against men's bodies and saved where men would wear them.\n- Legs from a gen3 body (Eve, AB Body and others) can now be refitted\n  onto a bibo one (Rue, LaRue, YAB and others). Before, this was refused\n  with \"Only 73% of the source Legs body finds its place on the target\".\n- Refitting onto a larger bust no longer leaves a band of cloth inside\n  the breast.\n- Body size text is much shorter everywhere, in every language. The\n  refit's statistics now go to the log; only warnings you can act on\n  stay on screen.\n- Create tab: a body skin overlay now follows you to every race that\n  shares the body's layout.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2610.641.0.0"
+    "TestingAssemblyVersion": "2610.645.0.0"
   },
   {
     "Author": "Solona",
