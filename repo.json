@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2610.658.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-556/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-557/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2610.658.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1791041000,
+    "LastUpdate": 1791071728,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Fixes and a Studio improvement\n\n- Docking the Colors window together with the Proteus window no longer\n  makes them flicker, and the Colors tab can be dragged back out. The\n  Colors window also stays open while the Proteus window is collapsed.\n- Body size: refitting a top within one body mod while another slot\n  changes rig (for example Rue+ hands going to Yiggle nails) no longer\n  reweights the whole garment, which fixes a ragged band of weights under\n  the breasts.\n- Second skin: a Lalafell no longer gets stuck redrawing over and over.\n- Studio, Parts tab: the Move tool's polygon picking now looks through\n  skin and locked parts, so cloth that clips behind the body or sits under\n  another piece can be selected by locking what is in front of it.\n  Locking a part takes its polygons out of the selection, and Grow no\n  longer spreads into locked parts.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2610.651.0.0"
+    "TestingAssemblyVersion": "2610.653.0.0"
   },
   {
     "Author": "Solona",
