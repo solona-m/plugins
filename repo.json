@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2610.652.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-554/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-555/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2610.652.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1790983140,
+    "LastUpdate": 1790997302,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Quiet refresh\n\n- `/proteus refresh silent` refreshes without printing a message in\n  chat, so macros and other plugins can call it without noise. It\n  combines with full: `/proteus refresh full silent`. Thanks to Caraxi.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2610.649.0.0"
+    "TestingAssemblyVersion": "2610.650.0.0"
   },
   {
     "Author": "Solona",
