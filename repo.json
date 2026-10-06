@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2610.668.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-561/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-562/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2610.668.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1791305609,
+    "LastUpdate": 1791313811,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Fixes for Parts, Body size, gloves and Cloth faces\n\n- Studio, Parts tab: writing or reverting a switch now hides or shows\n  its part straight away, without closing Proteus or redrawing by hand.\n- Studio, Parts tab: if Write is refused, the reason now shows in red\n  under the button and your staged switches are kept, so you can fix\n  them and write again. A switch name that is already taken is refused\n  as you type it.\n- Body size: skirts that hang a little away from the body swing again.\n- Body size: a vanilla item whose skin lands a few millimetres off the\n  new body (such as the Pioneer's Bottoms' waist strip) now gets the new\n  body's skin instead of a pale vanilla strip.\n- Body size: a bottom's waist no longer sinks into the belly of the top\n  worn over it after a refit.\n- Gloves: a ring-finger nail no longer disappears when sheer paint from\n  nearby (such as stockings) bleeds close to it.\n- Cloth mode: asymmetric face art no longer comes out symmetric and\n  smeared around the mouth.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2610.661.0.0"
+    "TestingAssemblyVersion": "2610.662.0.0"
   },
   {
     "Author": "Solona",
