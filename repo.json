@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2610.673.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-564/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-565/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2610.673.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1791390521,
+    "LastUpdate": 1791392680,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Edit vanilla gear, closer refits, and imported content that shows again\n\n- Vanilla gear you're wearing is now shown in green in the Studio, including\n  hats and accessories, and every tool works on it: toggles, the brush, move,\n  rotate and scale. Opening it copies it into a new mod called\n  \"<item> — Proteus edit\", which looks exactly like the original until you\n  change it. Opening the same item again later reuses that mod.\n- Toggles added to a mod that only replaces the model now work on the dye\n  variant you're wearing, not only on the first one.\n- Body size: cloth that stood off the body after a refit now sits as close to\n  the new body as its author had it to the old one. Victoria's Secret Sauce's\n  bikini bottoms, for example, stood 6-7 mm off the body after a refit.\n- Body size: refitting vanilla gear onto another body could show skin through\n  the hem in jagged teeth, with dark spikes poking out of stocking tops (the\n  Pioneer's Bottoms on Neolithe, for example). The new body's skin now stops\n  under the cloth where the original skin did, and a hem that sits on the\n  skin stays just clear of the new body instead of leaving a see-through gap.\n  Run Body size again on an item you already refitted to pick up these fixes.\n- Imported mods (piercings and other content packs) and second-skin layers\n  could fail to show at all on some characters, even though Proteus reported\n  building them. Proteus now follows the version of the hidden glasses\n  carrier that the game actually draws.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2610.665.0.0"
+    "TestingAssemblyVersion": "2610.666.0.0"
   },
   {
     "Author": "Solona",
