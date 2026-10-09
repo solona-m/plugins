@@ -3,7 +3,7 @@
     "Author": "Solona",
     "Name": "Proteus",
     "InternalName": "Proteus",
-    "AssemblyVersion": "2610.673.0.0",
+    "AssemblyVersion": "2610.678.0.0",
     "Description": "• Lets you use overlays — skin-tight gear, tattoos, scales and the like — as a regular Penumbra mod you can toggle on and off, recolour, bind to Glamourer designs and collections, and more.\n\n• Overlays render two ways. Painted into your skin, except now your overlays are dyeable. Or as a second skin, which lets you use sphere maps, metalness and animated glow that skin materials can't do.\n\n• Reshape any mod's models. Paint on your character to pull clothing clear of your body, push it in, smooth it, stretch it across a hollow, or paint where the wind sways it. Hair works too. Edits save into the mod and can be undone.\n\n• Add on/off switches to any part of any mod.\n\n• Make modded hair fit under hats, and undo it any time.\n\n• Import regular old mods and equip them without using a gear slot.\n\n• Save a mod's look as a preset you can wear, share and swap.\n\n• Imports Penumbra .pmp, Onion .omp and Atramentum Luminis .ttmp2 glow tattoos, with no shader mod needed.\n\n• Cloth overlays can enable skindenting with one click.\n\nType /proteus to manage your Proteus mods.",
     "ApplicableVersion": "any",
     "Tags": [
@@ -28,11 +28,11 @@
     "TestingDalamudApiLevel": 15,
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://dl.solona.info/v2610.673.0.0/latest.zip",
+    "DownloadLinkInstall": "https://dl.solona.info/v2610.678.0.0/latest.zip",
     "DownloadLinkTesting": "https://dl.solona.info/testing-567/latest.zip",
-    "DownloadLinkUpdate": "https://dl.solona.info/v2610.673.0.0/latest.zip",
+    "DownloadLinkUpdate": "https://dl.solona.info/v2610.678.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1791544355,
+    "LastUpdate": 1791559156,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -41,7 +41,7 @@
     "LoadPriority": 0,
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
-    "Changelog": "Edit vanilla gear, closer refits, and imported content that shows again\n\n- Vanilla gear you're wearing is now shown in green in the Studio, including\n  hats and accessories, and every tool works on it: toggles, the brush, move,\n  rotate and scale. Opening it copies it into a new mod called\n  \"<item> — Proteus edit\", which looks exactly like the original until you\n  change it. Opening the same item again later reuses that mod.\n- Toggles added to a mod that only replaces the model now work on the dye\n  variant you're wearing, not only on the first one.\n- Body size: cloth that stood off the body after a refit now sits as close to\n  the new body as its author had it to the old one. Victoria's Secret Sauce's\n  bikini bottoms, for example, stood 6-7 mm off the body after a refit.\n- Body size: refitting vanilla gear onto another body could show skin through\n  the hem in jagged teeth, with dark spikes poking out of stocking tops (the\n  Pioneer's Bottoms on Neolithe, for example). The new body's skin now stops\n  under the cloth where the original skin did, and a hem that sits on the\n  skin stays just clear of the new body instead of leaving a see-through gap.\n  Run Body size again on an item you already refitted to pick up these fixes.\n- Imported mods (piercings and other content packs) and second-skin layers\n  could fail to show at all on some characters, even though Proteus reported\n  building them. Proteus now follows the version of the hidden glasses\n  carrier that the game actually draws.\n\nPlease say if anything looks wrong.",
+    "Changelog": "Body size can leave out a part, and more of Proteus is translated\n\n- Body size: an optional part no longer joins the refit by itself. Both of\n  its dropdowns now start with \"None (leave this part out)\", which takes\n  the part out of the refit and stops the next garment filling it back in.\n- Live brush: after a zone or a Glamourer design moved you to another\n  collection, the brush preview could stay on your character until the\n  game restarted. It is now taken down from every collection it went into.\n- More of the interface is translated, including the Body size tool's name.\n\nPlease say if anything looks wrong.",
     "TestingAssemblyVersion": "2610.678.0.0"
   },
   {
