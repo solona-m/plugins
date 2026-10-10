@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2610.678.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-568/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-569/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2610.678.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1791628193,
+    "LastUpdate": 1791638508,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Body size can leave out a part, and more of Proteus is translated\n\n- Body size: an optional part no longer joins the refit by itself. Both of\n  its dropdowns now start with \"None (leave this part out)\", which takes\n  the part out of the refit and stops the next garment filling it back in.\n- Live brush: after a zone or a Glamourer design moved you to another\n  collection, the brush preview could stay on your character until the\n  game restarted. It is now taken down from every collection it went into.\n- More of the interface is translated, including the Body size tool's name.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2610.683.0.0"
+    "TestingAssemblyVersion": "2610.684.0.0"
   },
   {
     "Author": "Solona",
