@@ -64,7 +64,7 @@
     "DalamudApiLevel": 15,
     "TestingDalamudApiLevel": 15,
     "IsHide": false,
-    "IsTestingExclusive": true,
+    "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/camera-tools/v2610.32.0.0/latest.zip",
     "DownloadLinkTesting": "https://dl.solona.info/camera-tools/testing-6/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/camera-tools/v2610.32.0.0/latest.zip",
