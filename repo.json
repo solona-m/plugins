@@ -32,7 +32,7 @@
     "DownloadLinkTesting": "https://dl.solona.info/testing-582/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2610.678.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1792054885,
+    "LastUpdate": 1792077465,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -48,7 +48,7 @@
     "Author": "Solona",
     "Name": "Camera Tools",
     "InternalName": "CameraToolsXIV",
-    "AssemblyVersion": "2609.27.0.0",
+    "AssemblyVersion": "2610.31.0.0",
     "Description": "• Presents FFXIV's camera to ReShade as an IGCS camera tool, which is what accumulation depth-of-field add-ons need in order to work. Nothing has ever provided one for FFXIV before.\n\n• Works with iMMERSE Parallax DoF and Otis_Inf's IGCS Depth of Field, and with their panorama and multishot capture.\n\n• Frame the shot however you already do — Group Pose, Cammy, Brio. The camera is only taken over while an add-on is stacking frames, and handed straight back afterwards, so this does not compete with anything else you use.\n\n• Requires ReShade 6.4+ with add-on support, plus a compatible depth-of-field add-on.\n\nType /camtools to see whether an add-on is connected.",
     "ApplicableVersion": "any",
     "Tags": [
@@ -65,9 +65,9 @@
     "TestingDalamudApiLevel": 15,
     "IsHide": false,
     "IsTestingExclusive": true,
-    "DownloadLinkInstall": "https://dl.solona.info/camera-tools/testing-5/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/camera-tools/testing-5/latest.zip",
-    "DownloadLinkUpdate": "https://dl.solona.info/camera-tools/testing-5/latest.zip",
+    "DownloadLinkInstall": "https://dl.solona.info/camera-tools/testing-6/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/camera-tools/testing-6/latest.zip",
+    "DownloadLinkUpdate": "https://dl.solona.info/camera-tools/testing-6/latest.zip",
     "DownloadCount": 0,
     "LastUpdate": 0,
     "Punchline": "Lets ReShade's accumulation depth-of-field add-ons drive the GPose camera.",
@@ -77,6 +77,6 @@
     "CanUnloadAsync": false,
     "LoadPriority": 0,
     "RepoUrl": "https://github.com/solona-m/camera-tools-ffxiv",
-    "TestingAssemblyVersion": "2609.27.0.0"
+    "TestingAssemblyVersion": "2610.31.0.0"
   }
 ]
