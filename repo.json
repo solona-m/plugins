@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2610.897.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-589/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-590/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2610.897.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1792273689,
+    "LastUpdate": 1792288646,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Game tops fit body mods at the neckline, wind on older gear, and a lot of refit work\n\n- Auto refit: the game's own tops (Dirndl's Bodice and the like) no longer leave a hole or a gap\n  at the neckline on a body mod. The new body's skin tucks in under the cloth, cloth buried in a\n  larger bust is cleared, and a neckline the refit carried off the chest comes back toward it.\n  One case is not handled yet: a top the game draws over a pushed-up bust can still stand off a\n  body mod's natural chest.\n- Auto refit: cuts hidden skin and clears the body for the game's own gear; shoes and gloves keep\n  their own feet and hands; jackets worn as gloves or accessories are refitted; an outfit's jacket\n  stays outside its bra and a skirt's waist outside the belly; legs made on a gen2 body refit onto\n  bibo bodies; a pair option's chest and legs share one option; a whole batch redraws once.\n- Body size: every size for other bodies, for a whole mod, each cut from the author's nearest size;\n  a refit carries the metadata of the size it was cut from; the new body's nipples are smoothed\n  under covering cloth and the belly button is spanned.\n- Studio: the part list opens as a drawer beside the model; the Scale tool's axis handles stretch a\n  part along one axis; locked parts hide under the brushes and Move.\n- Painted wind sways on older gear, which is upgraded to Dawntrail's character shader.\n- An imported item effect plays on an invisible carrier; face overlays are cut from the face the\n  character wears; live-brush edits reach sync partners.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2610.941.0.0"
+    "TestingAssemblyVersion": "2610.952.0.0"
   },
   {
     "Author": "Solona",
@@ -69,7 +69,7 @@
     "DownloadLinkTesting": "https://dl.solona.info/camera-tools/testing-6/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/camera-tools/v2610.32.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1792273690,
+    "LastUpdate": 1792288646,
     "Punchline": "Lets ReShade's accumulation depth-of-field add-ons drive the GPose camera.",
     "AcceptsFeedback": false,
     "LoadRequiredState": 0,
