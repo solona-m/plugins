@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2610.957.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-590/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-591/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2610.957.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1792346944,
+    "LastUpdate": 1792369048,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Hair mods made for another race now fit yours, and a body per part in Body refit\n\n- Hair: many hair mods are made for one race only, so on any other race the game shows its own\n  hairstyle instead. Proteus now bends the mod's hairstyle onto your race's head and adds it to the\n  same option of the same mod. It checks the hair mods switched on in your collection once, and again\n  whenever one is installed, switched on or changed; chat names the hairstyle numbers it fitted.\n  Physics hair keeps its physics. It keeps working with Proteus off and travels with the mod. Switch\n  it off, check again or undo a fitted hairstyle under Settings, Hair.\n- Studio: \"Port to all races\" on a hair model fits a hair mod to every other race of the same sex in\n  one go; \"Remove ports\" takes them back out.\n- Body refit: chest, legs, hands and feet can each have their own body and size in Settings, Body\n  refit.\n- Hats: fitting hair under a hat no longer flattens a Miqo'te ear's own skin.\n- Body size: the new body's piercings are added only when you ask for them; nails are always carried.\n- Gear made for one race only refits through the shared Midlander shape.\n- Fixed settings occasionally failing to save while Proteus was busy in the background.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2610.952.0.0"
+    "TestingAssemblyVersion": "2610.974.0.0"
   },
   {
     "Author": "Solona",
@@ -69,7 +69,7 @@
     "DownloadLinkTesting": "https://dl.solona.info/camera-tools/testing-6/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/camera-tools/v2610.32.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1792346945,
+    "LastUpdate": 1792369049,
     "Punchline": "Lets ReShade's accumulation depth-of-field add-ons drive the GPose camera.",
     "AcceptsFeedback": false,
     "LoadRequiredState": 0,
