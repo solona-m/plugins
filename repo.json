@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2610.982.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-592/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-593/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2610.982.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1792525467,
+    "LastUpdate": 1792549432,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Refit gear for another race, and hair that follows each race's skeleton\n\n- Body size: \"Refit for\" refits a garment for another race of its sex, whoever you're playing. When the body mod\n  you refit onto has a body for that race (TBSE-X's M Highlander, say), pick it: Proteus makes that race's own\n  model from this one the way the game bends it, refits it onto that race's body and saves it where that race\n  loads it. Everyone else keeps the original. If the mod already has its own model for that race, it points you\n  to it.\n- Hair: hairstyles fitted to other races now move with the skeleton each race actually loads for that hairstyle,\n  so packs that were refused for every race (Midlander hairstyle 8, for one) now fit. Older fitted hair this got\n  wrong is remade when the mod is switched on.\n- Tops whose author cut the chest skin away under the cloth (Dei Gratia, for one) no longer leave the bust\n  through the cloth when refitted onto a larger body. Other garments whose own skin stops short of their cloth\n  may refit slightly differently; refits made before this build need remaking.\n- Body size on the game's own gear: the \"made for\" list offers the game's body for every race.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2610.1056.0.0"
+    "TestingAssemblyVersion": "2610.1088.0.0"
   },
   {
     "Author": "Solona",
@@ -69,7 +69,7 @@
     "DownloadLinkTesting": "https://dl.solona.info/camera-tools/testing-6/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/camera-tools/v2610.32.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1792525468,
+    "LastUpdate": 1792549434,
     "Punchline": "Lets ReShade's accumulation depth-of-field add-ons drive the GPose camera.",
     "AcceptsFeedback": false,
     "LoadRequiredState": 0,
