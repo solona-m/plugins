@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2610.1178.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-598/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-599/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2610.1178.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1792918925,
+    "LastUpdate": 1792970401,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Back to v2610.1168 while hair fitting is fixed\n\n- The v2610.1177 update is taken back: its hair fitting change didn't fix what it was meant to. This build is the\n  same as v2610.1168; the fix will follow in a new update.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2610.1183.0.0"
+    "TestingAssemblyVersion": "2610.1201.0.0"
   },
   {
     "Author": "Solona",
@@ -69,7 +69,7 @@
     "DownloadLinkTesting": "https://dl.solona.info/camera-tools/testing-6/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/camera-tools/v2610.32.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1792918926,
+    "LastUpdate": 1792970402,
     "Punchline": "Lets ReShade's accumulation depth-of-field add-ons drive the GPose camera.",
     "AcceptsFeedback": false,
     "LoadRequiredState": 0,
