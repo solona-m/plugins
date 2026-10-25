@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2610.1177.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-595/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-596/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2610.1177.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1792909213,
+    "LastUpdate": 1792909243,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Hair that doesn't sit right is fitted with a warning, and Rosaline Coconut in Every size\n\nHair\n- A hair mod fitted to your race that doesn't sit right on your head (it sinks into it, or stands off it) is now\n  fitted anyway, with a warning saying how far off it is, instead of being left alone. Check it in game.\n\nBody size\n- \"Every size for other bodies\" now makes Rosaline's Coconut chest alongside Medium and Large.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2610.1155.0.0"
+    "TestingAssemblyVersion": "2610.1178.0.0"
   },
   {
     "Author": "Solona",
@@ -69,7 +69,7 @@
     "DownloadLinkTesting": "https://dl.solona.info/camera-tools/testing-6/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/camera-tools/v2610.32.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1792909215,
+    "LastUpdate": 1792909244,
     "Punchline": "Lets ReShade's accumulation depth-of-field add-ons drive the GPose camera.",
     "AcceptsFeedback": false,
     "LoadRequiredState": 0,
