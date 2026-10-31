@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2610.1321.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-603/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-604/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2610.1321.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1793408866,
+    "LastUpdate": 1793419038,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Men's versions of women's mods, overlays lined up on men's chests, and part toggles that work\n\nBody size (every size)\n- Women's legs made on a nude body (LavaBod+, nude Bibo+) now get men's TBSE legs, fitted to TBSE's Gen A\n  legs when the SFW ones don't match.\n- A women's mod's shoes and gloves now get men's versions too, instead of being left out.\n- New \"Made on\" choice: tell Proteus which body an old mod was made for (one made before Dawntrail, say),\n  and the sizes it couldn't work out by itself are made from that body.\n- When nothing was added, the result says why, instead of claiming the mod already has every size.\n- Saving the men's legs after the top no longer switches a player wearing TBSE over to TBSE-X.\n\nRefit\n- \"Refit for\" now offers Midlander M on the game's own women's legs.\n- \"Refit for\" a race the mod already has a model of is no longer refused; it warns that the refit takes that\n  model's place while it's on.\n- A refit for another race or sex is refused when it would keep skin the new body doesn't use. This crashed\n  a male Viera wearing women's legs.\n- Men's legs refitted from women's legs made on a nude body are no longer invisible.\n- Dresses refitted onto bodies with deeper curves (Codeine onto Muse+) no longer show slits of missing skin\n  on the thighs. Refit them again to fix ones made earlier.\n- A garment made of two parts that meet at the waist no longer splits into a line there when you move.\n\nOverlays on men\n- Women's overlays on men, and women's tops refit for men, sat about 3 cm low on the chest. The new body maps\n  line the nipples up; they download by themselves. Refit a women's top again to get the new fit.\n\nImports\n- Imported packs that hide and show parts through their options (TexTools-style) now really hide and show\n  them, and keep the choices you had set on the installed mod.\n\nGlamourer\n- Updated to Glamourer's current release.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2610.1342.0.0"
+    "TestingAssemblyVersion": "2610.1345.0.0"
   },
   {
     "Author": "Solona",
@@ -69,7 +69,7 @@
     "DownloadLinkTesting": "https://dl.solona.info/camera-tools/testing-6/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/camera-tools/v2610.32.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1793408867,
+    "LastUpdate": 1793419039,
     "Punchline": "Lets ReShade's accumulation depth-of-field add-ons drive the GPose camera.",
     "AcceptsFeedback": false,
     "LoadRequiredState": 0,
