@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2611.1439.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-607/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-608/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2611.1439.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1793891342,
+    "LastUpdate": 1793926322,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Men's shoes and gloves everywhere, a body per part, NIRÆ sizes, bodysuits over the hands, and toe caps on any mod\n\nBody size (every size)\n- Women's shoes and gloves get men's versions from the Studio and the command line too, not only the size set.\n- Women's legs and shoes made on a nude body get men's TBSE-X versions as well as TBSE.\n- A women's glove made men's draws the men's own arm and hand at the wrist.\n- When none of the author's men's model files can be read as a model, the women's piece is made men's instead\n  of being left out.\n- A TexTools copy of an older game model is no longer mistaken for the author's men's piece.\n- The Body size tool remembers a body for each part, and the sizes you picked for each body.\n\nRefit\n- A one-piece outfit's legs can go onto a different body than its chest.\n- \"Made for body\" takes down a refit that is showing.\n- A body mod that switches its shapes with options (NIRÆ) decides which body the refit is fitted to, and is\n  never mistaken for the garment's source.\n- NIRÆ's chest offers every build with every chest size, instead of its hip sizes, and its Squish options no\n  longer show up as extra builds.\n- In the Studio, a leg piece is never offered the chest's sizes.\n\nBodysuits\n- A bodysuit or glove over the hands no longer leaves a hole where a nail sat in the finger (Rue+, YAB+,\n  LavaBod+ and others). The nail comes off and the gap is closed, or the nail is kept where that can't be done.\n- Long nails (Stabbies, LavaBod+, Tight&Firm) come off under a bodysuit instead of being copied into it.\n- Nail styles your body hides are left alone.\n- Bodysuits on NIRÆ cover only the chest it draws.\n- \"Cap the toes\" in the Colors window's Geometry section works on every mod. A mod with its own Toe Cap option\n  switches that option. Any other mod gets a built-in cap (Bibo+, Neolithe, Rue and YAB).\n\nImports\n- An imported pack's toggle groups only hide and show pieces in their own slot (ring piercings no longer vanish\n  with a top).\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2611.1456.0.0"
+    "TestingAssemblyVersion": "2611.1513.0.0"
   },
   {
     "Author": "Solona",
@@ -69,7 +69,7 @@
     "DownloadLinkTesting": "https://dl.solona.info/camera-tools/testing-6/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/camera-tools/v2610.32.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1793891350,
+    "LastUpdate": 1793926323,
     "Punchline": "Lets ReShade's accumulation depth-of-field add-ons drive the GPose camera.",
     "AcceptsFeedback": false,
     "LoadRequiredState": 0,
