@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2611.1522.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-612/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-613/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2611.1522.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1794062372,
+    "LastUpdate": 1794081112,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Point at a colour row to find it, hair ports across the sexes, every variant of your gear, and Dawntrail shaders\n\nColors\n- Point at a row button (#01-#16) and that row lights up on your character while the pointer stays on it: gear\n  rows colour-cycle, skin rows turn gold after a moment.\n- Rows your index textures select rarely or never are hidden. Tick \"Show all rows\" to see them.\n- The rows the editor counts as used now include every overlay of an option, and follow an index texture you\n  edit while the window is open.\n- Closing the Colors window, or Proteus's window, turns a skin Glow off.\n\nHair\n- The Studio can port a hairstyle to the other sex (\"Also for the other sex\"). Proteus never does this by itself.\n- A port to the other sex gets its own material, so one race of the other sex can be ported on its own.\n- Ported hair no longer sinks into bigger heads and shows bald spots.\n\nGear\n- Gear variants (Settings, on by default): wearing another colour variant of an item a mod replaces now draws the\n  mod's material, like TexTools' \"Apply to all variants\". Written into the mod, with undo.\n- Upgrade old gear to Dawntrail shaders (Settings, off by default): worn mods' old characterlegacy materials are\n  rewritten to Dawntrail's character shader, backed up first, with undo.\n- The shader upgrade never loses an original material, and keeps the original of a material you edit afterwards.\n- Gear darkened by an older wind save gets its own colours back.\n\nBody size and refit\n- The size set sizes a piece in the option group Penumbra actually draws it from (Equinox's bottoms are made now).\n- When two sources fit a piece equally, the size set picks the body mod.\n- A crossed shoe's or glove's cloth is read from a body Proteus knows before any other mod.\n- Nails under a bodysuit leave a smooth finger instead of a nail bed, and follow what your body mod's options hide.\n- Skin overlays read only the chest your body mod draws (much faster on NIRÆ).\n- \"Cap the toes\" covers just the toes, and says when the mod's own Toe Cap is a single-choice group.\n- A size-set piece whose own files are missing is no longer asked to pick \"Made on\".\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2611.1571.0.0"
+    "TestingAssemblyVersion": "2611.1608.0.0"
   },
   {
     "Author": "Solona",
@@ -69,7 +69,7 @@
     "DownloadLinkTesting": "https://dl.solona.info/camera-tools/testing-6/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/camera-tools/v2610.32.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1794062374,
+    "LastUpdate": 1794081114,
     "Punchline": "Lets ReShade's accumulation depth-of-field add-ons drive the GPose camera.",
     "AcceptsFeedback": false,
     "LoadRequiredState": 0,
