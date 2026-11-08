@@ -100,7 +100,7 @@
     "DalamudApiLevel": 15,
     "TestingDalamudApiLevel": 15,
     "IsHide": false,
-    "IsTestingExclusive": true,
+    "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/milieu/v2611.49.0.0/latest.zip",
     "DownloadLinkTesting": "https://dl.solona.info/milieu/testing-1/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/milieu/v2611.49.0.0/latest.zip",
