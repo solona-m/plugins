@@ -78,5 +78,42 @@
     "LoadPriority": 0,
     "RepoUrl": "https://github.com/solona-m/camera-tools-ffxiv",
     "TestingAssemblyVersion": "2610.31.0.0"
+  },
+  {
+    "Author": "Solona",
+    "Name": "Milieu",
+    "InternalName": "Milieu",
+    "AssemblyVersion": "2611.49.0.0",
+    "Description": "Projects an HDRI or panorama image onto a sky dome around you, for screenshots and venues. A large dome for outdoor skies, a small one for room interiors.\n\nType /milieu to open it.",
+    "ApplicableVersion": "any",
+    "Tags": [
+      "hdri",
+      "skybox",
+      "backdrop",
+      "gpose",
+      "screenshot",
+      "vfx"
+    ],
+    "CategoryTags": [
+      "utility"
+    ],
+    "DalamudApiLevel": 15,
+    "TestingDalamudApiLevel": 15,
+    "IsHide": false,
+    "IsTestingExclusive": true,
+    "DownloadLinkInstall": "https://dl.solona.info/milieu/testing-1/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/milieu/testing-1/latest.zip",
+    "DownloadLinkUpdate": "https://dl.solona.info/milieu/testing-1/latest.zip",
+    "DownloadCount": 0,
+    "LastUpdate": 0,
+    "Punchline": "Swap the backdrop for an HDRI panorama",
+    "AcceptsFeedback": true,
+    "LoadRequiredState": 0,
+    "LoadSync": false,
+    "CanUnloadAsync": false,
+    "LoadPriority": 0,
+    "RepoUrl": "https://github.com/solona-m/milieu",
+    "IconUrl": "https://dl.solona.info/milieu/icon.png",
+    "TestingAssemblyVersion": "2611.49.0.0"
   }
 ]

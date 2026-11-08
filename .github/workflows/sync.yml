@@ -25,7 +25,7 @@ jobs:
       #   repo     owner/name on GitHub
       #   manifest the manifest's filename INSIDE latest.zip
       #   prefix   path prefix on the mirror, '' for Proteus (its URLs are hardcoded in shipped
-      #            builds and cannot gain one), 'camera-tools/' for anything added since
+      #            builds and cannot gain one), 'camera-tools/' or 'milieu/' for anything added since
       #   icon     mirror URL of the icon, or empty for a plugin that ships none
       - name: Sync repo.json
         env:
@@ -36,6 +36,7 @@ jobs:
           PLUGINS=(
             "Proteus|solona-m/proteus|Proteus.json||https://dl.solona.info/icon.png"
             "CameraToolsXIV|solona-m/camera-tools-ffxiv|CameraToolsXIV.json|camera-tools/|"
+            "Milieu|solona-m/milieu|Milieu.json|milieu/|https://dl.solona.info/milieu/icon.png"
           )
 
           # Two guards, both load-bearing now that the download links are derived from these tags.
