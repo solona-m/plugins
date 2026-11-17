@@ -29,10 +29,10 @@
     "IsHide": false,
     "IsTestingExclusive": false,
     "DownloadLinkInstall": "https://dl.solona.info/v2611.1648.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/testing-615/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/testing-616/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2611.1648.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1794920197,
+    "LastUpdate": 1794943676,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -42,7 +42,7 @@
     "RepoUrl": "https://github.com/solona-m/proteus",
     "IconUrl": "https://dl.solona.info/icon.png",
     "Changelog": "Matcaps in the Studio, move a whole model at once, keep hidden skin in the size set, and smoother play\n\nMatcaps (new)\n- The Studio has a Matcaps tab: tick parts of gear, hair, ears, horns or tails and give them a shiny matcap look.\n  Works on refits and on Proteus's hair ports too.\n- Proteus's own matcap library (over 100, including 95 from sivka's 23Minks pack) downloads the first time you open it.\n- Click a matcap to preview it on your character before you apply it; \"Apply changes\" updates a matcap you already\n  made. The amber highlight on ticked parts steps aside while a preview shows.\n- Undo says so when there is nothing left to undo, and keeps a material a hair port still uses.\n\nStudio\n- Move, Rotate and Scale have an \"All\" mode: every ticked part of the open model moves as one piece.\n- A Move with \"Move skin too\" now goes exactly as far as you drag.\n\nBody size\n- The size set has a \"Keep hidden skin\" box (off by default): ticked, each body's skin goes in whole where the\n  author deleted theirs, for sizes that show missing skin. Shoes and gloves are always cut. Kept skin may show\n  through tight cloth.\n\nDesign bindings\n- A binding changes only when you edit the design in Glamourer or press Update. Re-applying the active design\n  puts its binding back.\n- Restoring a bound design no longer turns off a skin mod your body needs (the invisible body).\n\nFixes and performance\n- Fewer hitches: less work on the game thread, settings saved in the background.\n- Less disk activity while idle, for slow drives.\n- NIRÆ's racial bend works again while it is worn (auto refit, the live brush and refits).\n- A second-skin file another program holds is retried; if an accessory still isn't drawn, Proteus redraws once and\n  only then names it.\n- Hair ports name the right skeleton when they refuse, and say which port a new one replaced.\n- A pinned colour-row Glow turns off when the Colors window closes.\n- What's new and the README cover matcaps, the All mode, Gear shaders and Gear variants.\n\nPlease say if anything looks wrong.",
-    "TestingAssemblyVersion": "2611.1647.0.0"
+    "TestingAssemblyVersion": "2611.1678.0.0"
   },
   {
     "Author": "Solona",
@@ -69,7 +69,7 @@
     "DownloadLinkTesting": "https://dl.solona.info/camera-tools/testing-6/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/camera-tools/v2610.32.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1794920198,
+    "LastUpdate": 1794943677,
     "Punchline": "Lets ReShade's accumulation depth-of-field add-ons drive the GPose camera.",
     "AcceptsFeedback": false,
     "LoadRequiredState": 0,
@@ -83,7 +83,7 @@
     "Author": "Solona",
     "Name": "Milieu",
     "InternalName": "Milieu",
-    "AssemblyVersion": "2611.49.0.0",
+    "AssemblyVersion": "2611.170.0.0",
     "Description": "Projects an HDRI or panorama image onto a sky dome around you, for screenshots and venues. A large dome for outdoor skies, a small one for room interiors.\n\nType /milieu to open it.",
     "ApplicableVersion": "any",
     "Tags": [
@@ -101,11 +101,11 @@
     "TestingDalamudApiLevel": 15,
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://dl.solona.info/milieu/v2611.49.0.0/latest.zip",
-    "DownloadLinkTesting": "https://dl.solona.info/milieu/testing-5/latest.zip",
-    "DownloadLinkUpdate": "https://dl.solona.info/milieu/v2611.49.0.0/latest.zip",
+    "DownloadLinkInstall": "https://dl.solona.info/milieu/v2611.170.0.0/latest.zip",
+    "DownloadLinkTesting": "https://dl.solona.info/milieu/testing-6/latest.zip",
+    "DownloadLinkUpdate": "https://dl.solona.info/milieu/v2611.170.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1794920199,
+    "LastUpdate": 1794943678,
     "Punchline": "Swap the backdrop for an HDRI panorama",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -114,7 +114,7 @@
     "LoadPriority": 0,
     "RepoUrl": "https://github.com/solona-m/milieu",
     "IconUrl": "https://dl.solona.info/milieu/icon.png",
-    "TestingAssemblyVersion": "2611.98.0.0",
-    "Changelog": "Milieu 2611.49.0.0.\n- HDRI and panorama backdrops on a sky or room dome, eight bundled scenes.\n- Synced delivery is in testing builds only (experimental, not yet tested in game); stable builds hide it."
+    "TestingAssemblyVersion": "2611.170.0.0",
+    "Changelog": "Milieu 2611.170.0.0.\n- Scene lighting: the backdrop lights your character from the image's own light (HDR images directly; JPG/PNG and bundled scenes estimated). In GPose Milieu adds game lights; outside GPose, \"Only me\" backdrops carry their own lights.\n- Turn off the game's sun while a backdrop is shown to you only, and optionally hold the time at night, so the game's sun doesn't compete with the backdrop.\n- Synced backdrops (experimental): show your backdrop to your PSync pairs through a real Penumbra mod, \"Milieu Sync\", with its own lights. You are told before any image of yours is uploaded.\n- Each backdrop remembers its own settings (dome, look, lighting, sun and night); only Texture size and Visible to are shared. If you go back to an older Milieu and it saves, the per-backdrop settings are forgotten.\n- OpenEXR (.exr) images are supported.\n- Clicking a scene that isn't downloaded yet hides the current backdrop until the download finishes.\n- Repeat sliders snap to whole numbers; the window stays open in GPose."
   }
 ]
