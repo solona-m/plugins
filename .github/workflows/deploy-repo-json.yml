@@ -134,21 +134,27 @@ jobs:
           # The check above leaves seconds between it and wrangler's upload. If a hand deploy landed in them, this run
           # just replaced it, and the next run's state check would not notice (repo.json matches). So the first
           # deployment after the one this run started from must be this run's own: tagged $sha. (A hand deploy AFTER
-          # this run's upload comes second and stays live, which is right.) Retried while the history catches up.
-          first=
+          # this run's upload comes second and stays live, which is right.) Retried while the history catches up: right
+          # after a deploy Cloudflare can answer 404 for the new deployment's version for a moment (seen on the first run).
+          first=; first_tag=; found=
           for attempt in 1 2 3 4 5 6; do
-            first=$(cf /deployments | jq -er --arg since "$since" '[.result.deployments[] | select(.created_on > $since)]
-              | sort_by(.created_on) | if length == 0 then "" else .[0].versions[0].version_id end') \
-              || { echo "::error::could not read the deployment history after deploying; check it by hand."; exit 1; }
-            [ -n "$first" ] && break
+            if first=$(cf /deployments | jq -er --arg since "$since" '
+                 if .success != true then error("Cloudflare API error: \(.errors)") else . end
+                 | [.result.deployments[] | select(.created_on > $since)]
+                 | sort_by(.created_on) | if length == 0 then "" else .[0].versions[0].version_id end') \
+               && [ -n "$first" ] \
+               && first_tag=$(cf "/versions/$first" | jq -er '
+                 if .success != true then error("Cloudflare API error: \(.errors)") else . end
+                 | .result.annotations["workers/tag"] // ""'); then
+              found=1
+              break
+            fi
             [ "$attempt" -lt 6 ] && sleep 5
           done
-          if [ -z "$first" ]; then
-            echo "::error::this run's deployment does not show in the history after 30 s; check it by hand."
+          if [ -z "$found" ]; then
+            echo "::error::could not read this run's deployment in the history after 30 s; check it by hand."
             exit 1
           fi
-          first_tag=$(cf "/versions/$first" | jq -er '.result.annotations["workers/tag"] // ""') \
-            || { echo "::error::could not read the deployment history after deploying; check it by hand."; exit 1; }
           if [ "$first_tag" != "$sha" ]; then
             echo "::error::a deploy (version $first, ${first_tag:-untagged}) landed during this run and was replaced by commit $sha; redeploy it with npm run deploy."
             exit 1
