@@ -1,0 +1,135 @@
+name: Deploy repo.json
+
+# https://dl.solona.info/repo.json is a Workers static asset of the proteus-assets worker (solona-m/proteus, worker/):
+# Cloudflare serves it without running the worker, so the requests every Dalamud client makes on every startup no
+# longer count against the account's shared 100k Worker requests a day. A static asset only changes on a deploy, so
+# this workflow keeps it equal to this repo's main.
+#
+# Decided from STATE, not events: every run compares the live file with main's and deploys only when they differ
+# (or the live one is the worker's fallback rather than the asset). A failed run is healed by the next one; Sync
+# commits daily, so that is at most a day.
+#
+# It redeploys the proteus-assets commit that is LIVE (the tag `npm run deploy` gives every version), never a branch
+# head: worker changes go live only when the owner deploys them by hand, and CI never rolls them back.
+#
+# Needs the repository secret CLOUDFLARE_API_TOKEN: a custom Cloudflare token with Account > Workers Scripts > Edit
+# and Zone (solona.info) > Workers Routes > Edit. See worker/README.md in solona-m/proteus.
+
+on:
+  push:
+    branches: [main]
+    paths: [repo.json]
+  # Sync pushes with GITHUB_TOKEN, which triggers no push workflow; its completion does trigger this.
+  workflow_run:
+    workflows: [Sync]
+    types: [completed]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-repo-json
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 3fba8a761fcd42e7184bed2985a896c7
+      LIVE_URL: https://dl.solona.info/repo.json
+    steps:
+      # main at run time, not the triggering commit: runs are serialised, so the last one ships the newest file.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          path: plugins
+          persist-credentials: false
+
+      - name: Validate repo.json
+        run: |
+          jq -e 'type == "array" and length > 0' plugins/repo.json > /dev/null \
+            || { echo "::error::repo.json on main is not a non-empty JSON array; nothing deployed"; exit 1; }
+
+      # No --compressed: compare the identity bytes. The header must say `asset`: the worker's fallback (`raw`) serves
+      # the same bytes but runs, and bills, the worker.
+      - name: Is the live repo.json current?
+        id: state
+        run: |
+          if curl -fsS -D live.hdr -o live.json "$LIVE_URL" \
+             && cmp -s live.json plugins/repo.json \
+             && grep -qi '^x-proteus-mirror: *asset' live.hdr; then
+            echo "Live repo.json is current; nothing to deploy."
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Live repo.json differs from main (or is not the static asset); redeploying."
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Redeploy the live proteus-assets commit with main's repo.json
+        if: steps.state.outputs.needed == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${CLOUDFLARE_API_TOKEN:-}" ]; then
+            echo "::error::Add the CLOUDFLARE_API_TOKEN secret to solona-m/plugins (see worker/README.md in solona-m/proteus)."
+            exit 1
+          fi
+
+          api="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/scripts/proteus-assets"
+          cf() { curl -fsS -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" "$api$1"; }
+
+          # The commit the live version was deployed from: its `workers/tag`, written by `npm run deploy`.
+          # Called as $(live_sha), where set -e does not apply: every step returns explicitly on failure.
+          live_sha() {
+            local vid sha
+            vid=$(cf /deployments | jq -er '
+              if .success != true then error("Cloudflare API error: \(.errors)") else . end
+              | .result.deployments | max_by(.created_on)
+              | .versions | if length == 1 and .[0].percentage == 100 then .[0].version_id
+                            else error("the live deployment is split across versions; finish or roll back the split first") end') \
+              || return 1
+            sha=$(cf "/versions/$vid" | jq -er '.result.annotations["workers/tag"]
+              // error("the live version has no tag: the owner must deploy once with npm run deploy")') \
+              || return 1
+            [[ $sha =~ ^[0-9a-f]{40}$ ]] || { echo "::error::live version tag is not a commit id: $sha" >&2; return 1; }
+            echo "$sha"
+          }
+
+          sha=$(live_sha)
+          echo "Live proteus-assets commit: $sha"
+
+          # Plain git, no action: fetch exactly that commit's worker/. The remote-tracking ref is what deploy.mjs's
+          # pushed-commit check looks for. A commit that is not on GitHub fails here, loudly.
+          git init -q proteus
+          git -C proteus remote add origin https://github.com/solona-m/proteus.git
+          git -C proteus fetch -q --depth 1 --filter=blob:none origin "+$sha:refs/remotes/origin/live"
+          git -C proteus sparse-checkout set worker
+          git -C proteus checkout -q --detach "$sha"
+
+          cd proteus/worker
+          # Exactly the committed lock, and no install scripts, in the job that holds a token able to deploy workers.
+          npm ci --ignore-scripts --no-audit --no-fund
+
+          # The owner may have deployed while this ran; never overwrite that with the older commit.
+          [ "$(live_sha)" = "$sha" ] \
+            || { echo "::error::proteus-assets was deployed during this run; re-run this workflow."; exit 1; }
+
+          WRANGLER_SEND_METRICS=false node scripts/deploy.mjs deploy --repo-json "$GITHUB_WORKSPACE/plugins/repo.json"
+
+      # Bytes and header only. Edge propagation usually takes seconds; allow about five minutes.
+      - name: Verify
+        if: steps.state.outputs.needed == 'true'
+        run: |
+          for attempt in $(seq 1 10); do
+            if curl -fsS -D live.hdr -o live.json "$LIVE_URL" \
+               && cmp -s live.json plugins/repo.json \
+               && grep -qi '^x-proteus-mirror: *asset' live.hdr; then
+              echo "Live repo.json matches main and is the static asset."
+              exit 0
+            fi
+            [ "$attempt" -lt 10 ] && sleep 30
+          done
+          echo "::error::live /repo.json still differs from main (or is not the static asset) after deploying."
+          exit 1
