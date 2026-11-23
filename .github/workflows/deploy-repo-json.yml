@@ -35,8 +35,11 @@ permissions:
 
 jobs:
   deploy:
-    # Pinned, not ubuntu-latest: wrangler needs Node >= 22.12, which this image's Node has; a new image could change it.
+    # Not ubuntu-latest, which is moving to a new Ubuntu: this image ships Node 22, and wrangler needs >= 22.12 (it
+    # refuses an older Node loudly). GitHub still updates the image weekly; a run then fails rather than misdeploys.
     runs-on: ubuntu-24.04
+    # Runs are serialised: a stalled call must not hold the queue (and freeze repo.json) for GitHub's default 6 h.
+    timeout-minutes: 20
     env:
       CLOUDFLARE_ACCOUNT_ID: 3fba8a761fcd42e7184bed2985a896c7
       LIVE_URL: https://dl.solona.info/repo.json
@@ -58,7 +61,7 @@ jobs:
       - name: Is the live repo.json current?
         id: state
         run: |
-          if curl -fsS -D live.hdr -o live.json "$LIVE_URL" \
+          if curl -fsS --max-time 60 -D live.hdr -o live.json "$LIVE_URL" \
              && cmp -s live.json plugins/repo.json \
              && grep -qi '^x-proteus-mirror: *asset' live.hdr; then
             echo "Live repo.json is current; nothing to deploy."
@@ -80,27 +83,34 @@ jobs:
           fi
 
           api="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/scripts/proteus-assets"
-          cf() { curl -fsS -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" "$api$1"; }
+          # --fail-with-body: on a 4xx/5xx Cloudflare's JSON (its `errors`, never the token) still reaches jq, so the
+          # log names the missing permission instead of a bare "error: 403". pipefail still fails the call.
+          cf() { curl -sS --fail-with-body --max-time 60 -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" "$api$1"; }
 
-          # The commit the live version was deployed from: its `workers/tag`, written by `npm run deploy`.
-          # Called as $(live_sha), where set -e does not apply: every step returns explicitly on failure.
-          live_sha() {
-            local vid sha
-            vid=$(cf /deployments | jq -er '
+          # The live deployment's time and version, and the commit that version was deployed from (its `workers/tag`,
+          # written by `npm run deploy`), printed as "<created_on> <version id> <sha>". Called as $(live), where set -e
+          # does not apply: every step returns explicitly on failure.
+          live() {
+            local dep vid sha
+            dep=$(cf /deployments | jq -er '
               if .success != true then error("Cloudflare API error: \(.errors)") else . end
               | .result.deployments | max_by(.created_on)
-              | .versions | if length == 1 and .[0].percentage == 100 then .[0].version_id
-                            else error("the live deployment is split across versions; finish or roll back the split first") end') \
+              | if (.versions | length == 1 and .[0].percentage == 100) then "\(.created_on) \(.versions[0].version_id)"
+                else error("the live deployment is split across versions; finish or roll back the split first") end') \
               || return 1
-            sha=$(cf "/versions/$vid" | jq -er '.result.annotations["workers/tag"]
+            vid=${dep#* }
+            sha=$(cf "/versions/$vid" | jq -er '
+              if .success != true then error("Cloudflare API error: \(.errors)") else . end
+              | .result.annotations["workers/tag"]
               // error("the live version has no tag: the owner must deploy once with npm run deploy")') \
               || return 1
             [[ $sha =~ ^[0-9a-f]{40}$ ]] || { echo "::error::live version tag is not a commit id: $sha" >&2; return 1; }
-            echo "$sha"
+            echo "$dep $sha"
           }
 
-          sha=$(live_sha)
-          echo "Live proteus-assets commit: $sha"
+          start=$(live)
+          read -r since vid sha <<< "$start"
+          echo "Live proteus-assets version $vid (deployed $since), commit $sha"
 
           # Plain git, no action: fetch exactly that commit's worker/. The remote-tracking ref is what deploy.mjs's
           # pushed-commit check looks for. A commit that is not on GitHub fails here, loudly.
@@ -115,22 +125,32 @@ jobs:
           npm ci --ignore-scripts --no-audit --no-fund
 
           # The owner may have deployed while this ran; never overwrite that with the older commit.
-          now=$(live_sha) || { echo "::error::could not re-read the live proteus-assets commit; nothing deployed."; exit 1; }
-          [ "$now" = "$sha" ] \
+          now=$(live) || { echo "::error::could not re-read the live proteus-assets version; nothing deployed."; exit 1; }
+          [ "$now" = "$start" ] \
             || { echo "::error::proteus-assets was deployed during this run; re-run this workflow."; exit 1; }
 
           WRANGLER_SEND_METRICS=false node scripts/deploy.mjs deploy --repo-json "$GITHUB_WORKSPACE/plugins/repo.json"
 
           # The check above leaves seconds between it and wrangler's upload. If a hand deploy landed in them, this run
-          # just replaced it with $sha, and the next run's state check would not notice (repo.json matches). So the
-          # deployment just before the newest one must be the $sha version this run started from.
-          prev_vid=$(cf /deployments | jq -er '.result.deployments | sort_by(.created_on) | reverse | .[1].versions
-            | if length == 1 then .[0].version_id else error("the deployment before this run is split") end') \
+          # just replaced it, and the next run's state check would not notice (repo.json matches). So the first
+          # deployment after the one this run started from must be this run's own: tagged $sha. (A hand deploy AFTER
+          # this run's upload comes second and stays live, which is right.) Retried while the history catches up.
+          first=
+          for attempt in 1 2 3 4 5 6; do
+            first=$(cf /deployments | jq -er --arg since "$since" '[.result.deployments[] | select(.created_on > $since)]
+              | sort_by(.created_on) | if length == 0 then "" else .[0].versions[0].version_id end') \
+              || { echo "::error::could not read the deployment history after deploying; check it by hand."; exit 1; }
+            [ -n "$first" ] && break
+            [ "$attempt" -lt 6 ] && sleep 5
+          done
+          if [ -z "$first" ]; then
+            echo "::error::this run's deployment does not show in the history after 30 s; check it by hand."
+            exit 1
+          fi
+          first_tag=$(cf "/versions/$first" | jq -er '.result.annotations["workers/tag"] // ""') \
             || { echo "::error::could not read the deployment history after deploying; check it by hand."; exit 1; }
-          prev_tag=$(cf "/versions/$prev_vid" | jq -r '.result.annotations["workers/tag"] // ""') \
-            || { echo "::error::could not read the deployment history after deploying; check it by hand."; exit 1; }
-          if [ "$prev_tag" != "$sha" ]; then
-            echo "::error::a deploy of ${prev_tag:-an untagged version} landed during this run and was replaced by $sha; redeploy it with npm run deploy."
+          if [ "$first_tag" != "$sha" ]; then
+            echo "::error::a deploy (version $first, ${first_tag:-untagged}) landed during this run and was replaced by commit $sha; redeploy it with npm run deploy."
             exit 1
           fi
 
@@ -139,7 +159,7 @@ jobs:
         if: steps.state.outputs.needed == 'true'
         run: |
           for attempt in $(seq 1 10); do
-            if curl -fsS -D live.hdr -o live.json "$LIVE_URL" \
+            if curl -fsS --max-time 60 -D live.hdr -o live.json "$LIVE_URL" \
                && cmp -s live.json plugins/repo.json \
                && grep -qi '^x-proteus-mirror: *asset' live.hdr; then
               echo "Live repo.json matches main and is the static asset."
