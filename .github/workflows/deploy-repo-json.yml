@@ -75,6 +75,9 @@ jobs:
         if: steps.state.outputs.needed == 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          # Proteus keeps ~300 MB of UV maps in Git LFS, billed to the account's LFS bandwidth. Only worker/ is
+          # checked out, but never let a checkout download LFS content: pointers are enough here.
+          GIT_LFS_SKIP_SMUDGE: "1"
         run: |
           set -euo pipefail
           if [ -z "${CLOUDFLARE_API_TOKEN:-}" ]; then
