@@ -10,7 +10,8 @@ name: Deploy repo.json
 # commits daily, so that is at most a day.
 #
 # It redeploys the proteus-assets commit that is LIVE (the tag `npm run deploy` gives every version), never a branch
-# head: worker changes go live only when the owner deploys them by hand, and CI never rolls them back.
+# head: worker changes go live only when the owner deploys them by hand. A hand deploy that lands in the seconds
+# before CI's upload is replaced, and the run then fails loudly saying so.
 #
 # Needs the repository secret CLOUDFLARE_API_TOKEN: a custom Cloudflare token with Account > Workers Scripts > Edit
 # and Zone (solona.info) > Workers Routes > Edit. See worker/README.md in solona-m/proteus.
