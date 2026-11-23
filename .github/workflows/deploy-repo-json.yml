@@ -34,7 +34,8 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    # Pinned, not ubuntu-latest: wrangler needs Node >= 22.12, which this image's Node has; a new image could change it.
+    runs-on: ubuntu-24.04
     env:
       CLOUDFLARE_ACCOUNT_ID: 3fba8a761fcd42e7184bed2985a896c7
       LIVE_URL: https://dl.solona.info/repo.json
@@ -113,10 +114,24 @@ jobs:
           npm ci --ignore-scripts --no-audit --no-fund
 
           # The owner may have deployed while this ran; never overwrite that with the older commit.
-          [ "$(live_sha)" = "$sha" ] \
+          now=$(live_sha) || { echo "::error::could not re-read the live proteus-assets commit; nothing deployed."; exit 1; }
+          [ "$now" = "$sha" ] \
             || { echo "::error::proteus-assets was deployed during this run; re-run this workflow."; exit 1; }
 
           WRANGLER_SEND_METRICS=false node scripts/deploy.mjs deploy --repo-json "$GITHUB_WORKSPACE/plugins/repo.json"
+
+          # The check above leaves seconds between it and wrangler's upload. If a hand deploy landed in them, this run
+          # just replaced it with $sha, and the next run's state check would not notice (repo.json matches). So the
+          # deployment just before the newest one must be the $sha version this run started from.
+          prev_vid=$(cf /deployments | jq -er '.result.deployments | sort_by(.created_on) | reverse | .[1].versions
+            | if length == 1 then .[0].version_id else error("the deployment before this run is split") end') \
+            || { echo "::error::could not read the deployment history after deploying; check it by hand."; exit 1; }
+          prev_tag=$(cf "/versions/$prev_vid" | jq -r '.result.annotations["workers/tag"] // ""') \
+            || { echo "::error::could not read the deployment history after deploying; check it by hand."; exit 1; }
+          if [ "$prev_tag" != "$sha" ]; then
+            echo "::error::a deploy of ${prev_tag:-an untagged version} landed during this run and was replaced by $sha; redeploy it with npm run deploy."
+            exit 1
+          fi
 
       # Bytes and header only. Edge propagation usually takes seconds; allow about five minutes.
       - name: Verify
