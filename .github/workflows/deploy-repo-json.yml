@@ -50,8 +50,8 @@ jobs:
 
       - name: Validate repo.json
         run: |
-          jq -e 'type == "array" and length > 0' plugins/repo.json > /dev/null \
-            || { echo "::error::repo.json on main is not a non-empty JSON array; nothing deployed"; exit 1; }
+          jq -e 'type == "array" and length > 0 and all(.[]; type == "object")' plugins/repo.json > /dev/null \
+            || { echo "::error::repo.json on main is not a non-empty JSON array of plugin entries; nothing deployed"; exit 1; }
 
       # No --compressed: compare the identity bytes. The header must say `asset`: the worker's fallback (`raw`) serves
       # the same bytes but runs, and bills, the worker.
