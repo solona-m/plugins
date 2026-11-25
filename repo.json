@@ -32,7 +32,7 @@
     "DownloadLinkTesting": "https://dl.solona.info/testing-619/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/v2611.1839.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1795531234,
+    "LastUpdate": 1795615305,
     "Punchline": "Overlays, off-slot gear and model editing for Penumbra mods",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -69,7 +69,7 @@
     "DownloadLinkTesting": "https://dl.solona.info/camera-tools/testing-6/latest.zip",
     "DownloadLinkUpdate": "https://dl.solona.info/camera-tools/v2610.32.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1795531236,
+    "LastUpdate": 1795615306,
     "Punchline": "Lets ReShade's accumulation depth-of-field add-ons drive the GPose camera.",
     "AcceptsFeedback": false,
     "LoadRequiredState": 0,
@@ -83,7 +83,7 @@
     "Author": "Solona",
     "Name": "Milieu",
     "InternalName": "Milieu",
-    "AssemblyVersion": "2611.191.0.0",
+    "AssemblyVersion": "2611.198.0.0",
     "Description": "Projects an HDRI or panorama image onto a sky dome around you, for screenshots and venues. A large dome for outdoor skies, a small one for room interiors.\n\nType /milieu to open it.",
     "ApplicableVersion": "any",
     "Tags": [
@@ -101,11 +101,11 @@
     "TestingDalamudApiLevel": 15,
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://dl.solona.info/milieu/v2611.191.0.0/latest.zip",
+    "DownloadLinkInstall": "https://dl.solona.info/milieu/v2611.198.0.0/latest.zip",
     "DownloadLinkTesting": "https://dl.solona.info/milieu/testing-7/latest.zip",
-    "DownloadLinkUpdate": "https://dl.solona.info/milieu/v2611.191.0.0/latest.zip",
+    "DownloadLinkUpdate": "https://dl.solona.info/milieu/v2611.198.0.0/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1795531237,
+    "LastUpdate": 1795615308,
     "Punchline": "Swap the backdrop for an HDRI panorama",
     "AcceptsFeedback": true,
     "LoadRequiredState": 0,
@@ -115,6 +115,6 @@
     "RepoUrl": "https://github.com/solona-m/milieu",
     "IconUrl": "https://dl.solona.info/milieu/icon.png",
     "TestingAssemblyVersion": "2611.191.0.0",
-    "Changelog": "Milieu 2611.191.0.0.\n- Backdrops stand on the floor as a half dome instead of a full sphere, so the image's ground no longer smears into streaks under your feet.\n- Ground projection has a \"Bottom\" choice: \"Image floor\" lays the picture's ground flat at your feet (the sky default); \"Open (game floor)\" stops the picture where the dome meets the floor and keeps the game's own floor (the room default). Camera height sets how high the image's horizon sits above your feet.\n- Room backdrops you had lowered to sit on the floor switch to the open bottom automatically.\n- Your own images convert to a backdrop much faster."
+    "Changelog": "Milieu 2611.198.0.0.\n- Four new bundled scenes: Autumn, Snow, Christmas Studio and Christmas Studio 2. Click one to download it (about 43 MB each), like the others.\n- Your own images convert with slightly better quality on detailed scenes such as dense foliage. Images you already use convert once more the first time you show them after updating."
   }
 ]
